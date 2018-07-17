@@ -201,22 +201,23 @@
   },
   "cities": {
     "city1": {
-      "name": "Nashville",
-      "countryId": "country1"
+      "name": "nashville",
+      "countryId": "country189"
     }
   },
   "activities": {
-    "activity1": "Hiking",
-    "activity2": "Surfing",
-    "activty3": "Night-life",
-    "activity4": "Sight-Seeing"
+    "activity1": "hiking",
+    "activity2": "surfing",
+    "activty3": "night-life",
+    "activity4": "sight-seeing"
   },
   "allTrips": {
-    "tripId": {
-      "countryId": "country1",
+    "trip1": {
+      "countryId": "country189",
       "activityId": "activity1",
       "cityId": "city1",
-      "description": "",
+      "description": "Savage Gulf State Natural Area is home to Greeter Falls. It's an amazing waterfall that has plenty of room for swimming at the base. We were there on a Sunday afternoon in early summer (last week of June) and hardly anyone was there.",
+      "linkUrl": "https://www.alltrails.com/parks/us/tennessee/savage-gulf-state-natural-area",
       "uid": ""
     }
   },
@@ -224,7 +225,7 @@
     "savedTrip1": {
       "uid": "",
       "tripId": "trip1",
-      "isCompleted": ""
+      "isCompleted": false
     }
   }
 }
