@@ -1,0 +1,39 @@
+{
+  "countries": {
+    "country1": "United States",
+    "country2": "France",
+    "country3": "Peru",
+    "country4": "Brazil",
+    "country5": "South Korea",
+    "country6": "Australia",
+    "country7": "Saudi Arabia"
+  },
+  "cities": {
+    "city1": {
+      "name": "Nashville",
+      "countryId": "country1"
+    }
+  },
+  "activities": {
+    "activity1": "Hiking",
+    "activity2": "Surfing",
+    "activty3": "Night-life",
+    "activity4": "Sight-Seeing"
+  },
+  "allTrips": {
+    "tripId": {
+      "countryId": "country1",
+      "activityId": "activity1",
+      "cityId": "city1",
+      "description": "",
+      "uid": ""
+    }
+  },
+  "savedTrips": {
+    "savedTrip1": {
+      "uid": "",
+      "tripId": "trip1",
+      "isCompleted": ""
+    }
+  }
+}
