@@ -67,7 +67,7 @@ class App extends Component {
     this.removeListener();
   }
 
-  runAway () {
+  runAway = () => {
     this.setState({authed: false});
   }
 

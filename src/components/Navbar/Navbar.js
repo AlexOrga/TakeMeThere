@@ -36,6 +36,9 @@ class Navbar extends React.Component {
                     <li><Link to="/savedtrips">
                       Saved Trips</Link>
                     </li>
+                    <li><Link to="/newtrip">
+                      Create Trip</Link>
+                    </li>
                     <li className="navbar-form">
                       <button
                         onClick={logoutClickEvent}
