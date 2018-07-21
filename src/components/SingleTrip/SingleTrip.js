@@ -7,10 +7,13 @@ class SingleTrip extends React.Component {
   renderTrip (trip) {
     const cities = this.props.cities;
     const currentCity = cities.find(x => x.id === trip.cityId);
+
     const countries = this.props.countries;
     const currentCountry = countries.find(x => x.id === trip.countryId);
+
     const activities = this.props.activities;
     const currentActivity = activities.find(x => x.id === trip.activityId);
+
     return (
       <div>
         <div className="col-sm-6 col-md-4">
@@ -21,7 +24,7 @@ class SingleTrip extends React.Component {
               <h5>{currentCountry.name}</h5>
               <p>{currentActivity.name}</p>
               <p>{trip.description}</p>
-              <p><a href={trip.linkUrl} className="btn btn-primary" role="button">Savage Gulf Trail</a> <a href="" className="btn btn-default" role="button">Save Trip</a></p>
+              <p><a href={trip.linkUrl} className="btn btn-primary" role="button">Savage Gulf Trail</a> <a href="" className="btn btn-default" role="button">Save Trip (doesn't function)</a></p>
             </div>
           </div>
         </div>
