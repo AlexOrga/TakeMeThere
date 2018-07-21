@@ -1,7 +1,7 @@
 import React from 'react';
 import { DropdownButton, MenuItem } from 'react-bootstrap';
 
-import './DropDown.css';
+import './DropDownActivities.css';
 
 // const consoleEvent = (e) => {
 //   console.error(e.target.id);
@@ -9,15 +9,15 @@ import './DropDown.css';
 
 class DropDown extends React.Component {
 
-  menuItemComponent = (country) => {
+  menuItemComponent = (activity) => {
     return (
-      <MenuItem key={country.id} eventKey={country.id} id={country.id} onClick={this.props.addCountry}>{country.name}</MenuItem>
+      <MenuItem key={activity.id} eventKey={activity.id} id={activity.id} onClick={this.props.addActivity}>{activity.name}</MenuItem>
     );
   }
 
   render () {
-    const countries = this.props.countries;
-    const title = 'Select A Country';
+    const activities = this.props.activities;
+    const title = 'Select An Activity';
     return (
       <div className="dropdown">
         <DropdownButton
@@ -26,7 +26,7 @@ class DropDown extends React.Component {
           key='12'
           id={`dropdown-basic-12`}
         >
-          {countries.map(this.menuItemComponent)}
+          {activities.map(this.menuItemComponent)}
         </DropdownButton>
       </div>
     );

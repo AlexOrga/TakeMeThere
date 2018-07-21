@@ -2,7 +2,8 @@ import React from 'react';
 import activitiesRequests from '../../firebaseRequests/activities';
 import countriesRequests from '../../firebaseRequests/countries';
 
-import DropDown from '../DropDown/DropDown';
+import DropDownCountries from '../DropDownCountries/DropDownCountries';
+import DropDownActivities from '../DropDownActivities/DropDownActivities';
 import './NewTrip.css';
 
 class NewTrip extends React.Component {
@@ -36,6 +37,12 @@ class NewTrip extends React.Component {
   addCountryId = (e) => {
     const newTrip = {...this.state.newTrip};
     newTrip.countryId = e.target.id;
+    this.setState({newTrip});
+  }
+
+  addActivityId = (e) => {
+    const newTrip = {...this.state.newTrip};
+    newTrip.activityId = e.target.id;
     this.setState({newTrip});
   }
 
@@ -102,10 +109,18 @@ class NewTrip extends React.Component {
               />
             </div>
           </div>
-          <DropDown
-            addCountry={this.addCountryId}
-            countries={this.state.countries}
-          />
+          <div>
+            <DropDownCountries
+              addCountry={this.addCountryId}
+              countries={this.state.countries}
+            />
+          </div>
+          <div>
+            <DropDownActivities
+              addActivity={this.addActivityId}
+              activities={this.state.activities}
+            />
+          </div>
           <div className="form-group">
             <div className="col-sm-offset-2 col-sm-10">
               <div className="checkbox">
