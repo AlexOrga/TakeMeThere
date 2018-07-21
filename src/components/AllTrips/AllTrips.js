@@ -5,7 +5,7 @@ import citiesRequests from '../../firebaseRequests/cities';
 import countriesRequests from '../../firebaseRequests/countries';
 
 import './AllTrips.css';
-import SingleSavedTrip from '../SingleSavedTrip/SingleSavedTrip';
+import SingleTrip from '../SingleTrip/SingleTrip';
 
 class AllTrips extends React.Component {
   state = {
@@ -44,7 +44,7 @@ class AllTrips extends React.Component {
   render () {
     const allTripsComponents = this.state.allTrips.map((trip) => {
       return (
-        <SingleSavedTrip
+        <SingleTrip
           key={trip.id}
           details={trip}
           cities={this.state.cities}
