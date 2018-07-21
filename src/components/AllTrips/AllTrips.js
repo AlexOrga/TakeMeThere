@@ -28,7 +28,7 @@ class AllTrips extends React.Component {
                 countriesRequests
                   .getCountries()
                   .then((countries) => {
-                    this.setState({isLoaded: true, allTrips, activities, cities, countries});
+                    this.setState({allTrips, activities, cities, countries});
                   })
                   .catch();
               })
