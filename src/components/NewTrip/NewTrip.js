@@ -1,6 +1,8 @@
 import React from 'react';
+import authRequests from '../../firebaseRequests/auth';
 import activitiesRequests from '../../firebaseRequests/activities';
 import countriesRequests from '../../firebaseRequests/countries';
+// import newTripRequests from '../../firebaseRequests/newtrip';
 
 import DropDownCountries from '../DropDownCountries/DropDownCountries';
 import DropDownActivities from '../DropDownActivities/DropDownActivities';
@@ -27,7 +29,9 @@ class NewTrip extends React.Component {
         countriesRequests
           .getCountries()
           .then((countries) => {
-            this.setState({ activities, countries});
+            const newTrip = {...this.state.newTrip};
+            newTrip.uid = authRequests.getUID();
+            this.setState({activities, countries, newTrip});
           })
           .catch();
       })
@@ -62,6 +66,15 @@ class NewTrip extends React.Component {
     const tempTrip = {...this.state.newTrip};
     tempTrip.linkUrl = e.target.value;
     this.setState({newTrip: tempTrip});
+  }
+
+  saveTripEvent = (e) => {
+    e.preventDefault();
+    const newTripObj = this.state.newTrip;
+    console.error('newTripObj', newTripObj);
+    // newTripRequests
+    //   .postNewTrip()
+    //   .then()
   }
 
   render () {
@@ -123,16 +136,11 @@ class NewTrip extends React.Component {
           </div>
           <div className="form-group">
             <div className="col-sm-offset-2 col-sm-10">
-              <div className="checkbox">
-                <label>
-                  <input type="checkbox" /> Remember me
-                </label>
-              </div>
-            </div>
-          </div>
-          <div className="form-group">
-            <div className="col-sm-offset-2 col-sm-10">
-              <button type="submit" className="btn btn-default">Sign in</button>
+              <button
+                type="submit"
+                className="btn btn-default"
+                onClick={this.saveTripEvent}
+              >Sign in</button>
             </div>
           </div>
         </form>
