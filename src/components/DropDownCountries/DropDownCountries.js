@@ -7,7 +7,14 @@ import './DropDownCountries.css';
 //   console.error(e.target.id);
 // };
 
+const title = 'Select A Country';
+
 class DropDown extends React.Component {
+
+  // changeTitle = (e) => {
+  //   this.props.addCountry();
+  //   console.error('e: ', e);
+  // }
 
   menuItemComponent = (country) => {
     return (
@@ -17,7 +24,6 @@ class DropDown extends React.Component {
 
   render () {
     const countries = this.props.countries;
-    const title = 'Select A Country';
     return (
       <div className="dropdown">
         <DropdownButton

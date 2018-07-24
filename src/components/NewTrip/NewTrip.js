@@ -3,7 +3,7 @@ import authRequests from '../../firebaseRequests/auth';
 import activitiesRequests from '../../firebaseRequests/activities';
 import countriesRequests from '../../firebaseRequests/countries';
 import citiesRequests from '../../firebaseRequests/cities';
-// import newTripRequests from '../../firebaseRequests/newtrip';
+import newTripRequests from '../../firebaseRequests/newtrip';
 
 import DropDownCountries from '../DropDownCountries/DropDownCountries';
 import DropDownActivities from '../DropDownActivities/DropDownActivities';
@@ -65,9 +65,16 @@ class NewTrip extends React.Component {
   }
 
   addCityId = (cityId) => {
-    const newTrip = {...this.state.newTrip};
-    newTrip.cityId = cityId;
-    this.setState({newTrip});
+    const newTripObj = {...this.state.newTrip};
+    newTripObj.cityId = cityId;
+    newTripRequests
+      .postNewTrip(newTripObj)
+      .then(() => {
+        console.error('success');
+      })
+      .catch(() => {
+        console.error('epic fail');
+      });
   }
 
   addDescription = (e) => {
@@ -80,6 +87,10 @@ class NewTrip extends React.Component {
     const newTrip = {...this.state.newTrip};
     newTrip.linkUrl = e.target.value;
     this.setState({newTrip: newTrip});
+  }
+
+  getNewTripForSave = () => {
+    return this.state.newTrip;
   }
 
   checkCityForId = () => {
@@ -98,7 +109,7 @@ class NewTrip extends React.Component {
       citiesRequests
         .postNewCity(newCityObj)
         .then((fbKey) => {
-          console.error('firebaseKey for New City', fbKey);
+          this.addCityId(fbKey);
         })
         .catch();
     }
@@ -108,8 +119,18 @@ class NewTrip extends React.Component {
   saveTripEvent = (e) => {
     e.preventDefault();
     this.checkCityForId();
-    // const newTripObj = this.state.newTrip;
-    // console.error('newTripObj', newTripObj);
+    if (
+      this.state.newTrip.activityId !== '' &&
+      this.state.newTrip.cityId !== '' &&
+      this.state.newTrip.countryId !== '' &&
+      this.state.newTrip.description !== '' &&
+      this.state.newTrip.linkUrl !== ''
+    ) {
+      const newTripObj = this.state.newTrip;
+      console.error('newTripObj: ', newTripObj);
+    } else {
+      console.error('sorry bout ye luck');
+    }
   }
 
   render () {
