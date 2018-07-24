@@ -113,7 +113,6 @@ class NewTrip extends React.Component {
         })
         .catch();
     }
-    // console.error('cities:', cities, 'currentCity:', currentCity, 'cityId:', cityId);
   }
 
   saveTripEvent = (e) => {
