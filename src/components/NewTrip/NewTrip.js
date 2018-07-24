@@ -86,7 +86,7 @@ class NewTrip extends React.Component {
     const cities = this.state.cities;
     const currentCountryId = this.state.newTrip.countryId;
     const currentCity = this.state.currentCity.toLowerCase();
-    const cityId = cities.find(x => x.name === currentCity);
+    const cityId = cities.find(x => x.name === currentCity && x.countryId === currentCountryId);
     if (cityId !== undefined) {
       this.addCityId(cityId.id);
     } else {
@@ -95,19 +95,21 @@ class NewTrip extends React.Component {
         countryId: currentCountryId,
       };
       console.error('newCityObj', newCityObj);
-      // citiesRequests
-      //   .postNewCity(newCityObj)
-      //   .then()
-      //   .catch();
+      citiesRequests
+        .postNewCity(newCityObj)
+        .then((fbKey) => {
+          console.error('firebaseKey for New City', fbKey);
+        })
+        .catch();
     }
     // console.error('cities:', cities, 'currentCity:', currentCity, 'cityId:', cityId);
   }
 
   saveTripEvent = (e) => {
     e.preventDefault();
-    const newTripObj = this.state.newTrip;
-    console.error('newTripObj', newTripObj);
     this.checkCityForId();
+    // const newTripObj = this.state.newTrip;
+    // console.error('newTripObj', newTripObj);
   }
 
   render () {
