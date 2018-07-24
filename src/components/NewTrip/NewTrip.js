@@ -2,6 +2,7 @@ import React from 'react';
 import authRequests from '../../firebaseRequests/auth';
 import activitiesRequests from '../../firebaseRequests/activities';
 import countriesRequests from '../../firebaseRequests/countries';
+import citiesRequests from '../../firebaseRequests/cities';
 // import newTripRequests from '../../firebaseRequests/newtrip';
 
 import DropDownCountries from '../DropDownCountries/DropDownCountries';
@@ -10,6 +11,8 @@ import './NewTrip.css';
 
 class NewTrip extends React.Component {
   state = {
+    currentCity: '',
+    cities: [],
     activities: [],
     countries: [],
     newTrip: {
@@ -26,16 +29,27 @@ class NewTrip extends React.Component {
     activitiesRequests
       .getActivities()
       .then((activities) => {
-        countriesRequests
-          .getCountries()
-          .then((countries) => {
-            const newTrip = {...this.state.newTrip};
-            newTrip.uid = authRequests.getUID();
-            this.setState({activities, countries, newTrip});
+        citiesRequests
+          .getCities()
+          .then((cities) => {
+            countriesRequests
+              .getCountries()
+              .then((countries) => {
+                const newTrip = {...this.state.newTrip};
+                newTrip.uid = authRequests.getUID();
+                this.setState({activities, countries, cities, newTrip});
+              })
+              .catch();
           })
           .catch();
       })
       .catch();
+  }
+
+  addCurrentCity = (e) => {
+    let tempCity = {...this.state.currentCity};
+    tempCity = e.target.value;
+    this.setState({currentCity: tempCity});
   }
 
   addCountryId = (e) => {
@@ -50,31 +64,50 @@ class NewTrip extends React.Component {
     this.setState({newTrip});
   }
 
-  addCity = (e) => {
-    const tempTrip = {...this.state.newTrip};
-    tempTrip.cityId = e.target.value;
-    this.setState({newTrip: tempTrip});
+  addCityId = (cityId) => {
+    const newTrip = {...this.state.newTrip};
+    newTrip.cityId = cityId;
+    this.setState({newTrip});
   }
 
   addDescription = (e) => {
-    const tempTrip = {...this.state.newTrip};
-    tempTrip.description = e.target.value;
-    this.setState({newTrip: tempTrip});
+    const newTrip = {...this.state.newTrip};
+    newTrip.description = e.target.value;
+    this.setState({newTrip: newTrip});
   }
 
   addLinkUrl = (e) => {
-    const tempTrip = {...this.state.newTrip};
-    tempTrip.linkUrl = e.target.value;
-    this.setState({newTrip: tempTrip});
+    const newTrip = {...this.state.newTrip};
+    newTrip.linkUrl = e.target.value;
+    this.setState({newTrip: newTrip});
+  }
+
+  checkCityForId = () => {
+    const cities = this.state.cities;
+    const currentCountryId = this.state.newTrip.countryId;
+    const currentCity = this.state.currentCity.toLowerCase();
+    const cityId = cities.find(x => x.name === currentCity);
+    if (cityId !== undefined) {
+      this.addCityId(cityId.id);
+    } else {
+      const newCityObj = {
+        name: currentCity,
+        countryId: currentCountryId,
+      };
+      console.error('newCityObj', newCityObj);
+      // citiesRequests
+      //   .postNewCity(newCityObj)
+      //   .then()
+      //   .catch();
+    }
+    // console.error('cities:', cities, 'currentCity:', currentCity, 'cityId:', cityId);
   }
 
   saveTripEvent = (e) => {
     e.preventDefault();
     const newTripObj = this.state.newTrip;
     console.error('newTripObj', newTripObj);
-    // newTripRequests
-    //   .postNewTrip()
-    //   .then()
+    this.checkCityForId();
   }
 
   render () {
@@ -91,8 +124,8 @@ class NewTrip extends React.Component {
                 className="form-control"
                 id="inputCity"
                 placeholder="City Name"
-                value={newTrip.cityId}
-                onChange={this.addCity}
+                value={this.state.currentCity}
+                onChange={this.addCurrentCity}
               />
             </div>
           </div>
