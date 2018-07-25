@@ -39,10 +39,7 @@ class SingleTrip extends React.Component {
     // const countries = this.props.countries;
     return (
       <div>
-        <h1 className="header">Single Trip</h1>
-        <div>
-          {this.renderTrip(details)}
-        </div>
+        {this.renderTrip(details)}
       </div>
     );
   }
