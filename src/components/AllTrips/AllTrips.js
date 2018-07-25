@@ -1,5 +1,6 @@
 import React from 'react';
 import authRequests from '../../firebaseRequests/auth';
+import savedTripsRequests from '../../firebaseRequests/savedtrips';
 import allTripsRequests from '../../firebaseRequests/alltrips';
 import activitiesRequests from '../../firebaseRequests/activities';
 import citiesRequests from '../../firebaseRequests/cities';
@@ -49,7 +50,14 @@ class AllTrips extends React.Component {
       isCompleted: false,
       uid: authRequests.getUID(),
     };
-    console.error(saveTripObj);
+    savedTripsRequests
+      .saveATrip(saveTripObj)
+      .then(() => {
+        console.error('success');
+      })
+      .catch((err) => {
+        console.error('error saving trip', err);
+      });
   }
 
   render () {
