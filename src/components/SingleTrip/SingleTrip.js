@@ -15,17 +15,18 @@ class SingleTrip extends React.Component {
     const currentActivity = activities.find(x => x.id === trip.activityId);
 
     return (
-      <div>
-        <div className="col-sm-6 col-md-4">
-          <div className="thumbnail">
-            <img src="..." alt="..." />
-            <div className="caption">
-              <h3>{currentCity.name}</h3>
-              <h5>{currentCountry.name}</h5>
-              <p>{currentActivity.name}</p>
-              <p>{trip.description}</p>
-              <p><a href={trip.linkUrl} className="btn btn-primary" role="button">Savage Gulf Trail</a> <a href="" className="btn btn-default" role="button">Save Trip (doesn't function)</a></p>
-            </div>
+      <div className="col-sm-6 col-md-4">
+        <div className="thumbnail">
+          <img src="..." alt="..." />
+          <div className="caption">
+            <h3>{currentCity.name}</h3>
+            <h5>{currentCountry.name}</h5>
+            <p>{currentActivity.name}</p>
+            <p>{trip.description}</p>
+            <p>
+              <a href={trip.linkUrl} className="btn btn-primary" role="button">Savage Gulf Trail</a>
+              <a href="" id={this.props.details.id} className="btn btn-default" role="button" onClick={this.props.saveTripEvent}>Save Trip</a>
+            </p>
           </div>
         </div>
       </div>
