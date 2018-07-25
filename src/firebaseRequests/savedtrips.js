@@ -11,6 +11,7 @@ const getSavedTrips = (uid) => {
           Object.keys(res.data).forEach((fbKey) => {
             getSingleTripFromAllTrips(res.data[fbKey].tripId)
               .then((singleTrip) => {
+
                 savedTrips.push(singleTrip);
               })
               .catch((err) => {
@@ -33,6 +34,7 @@ const getSingleTripFromAllTrips = (savedTripId) => {
       .then((res) => {
         let singleTrip = {};
         if (res.data !== 'null') {
+          res.data.id = savedTripId;
           singleTrip = res.data;
         }
         resolve(singleTrip);

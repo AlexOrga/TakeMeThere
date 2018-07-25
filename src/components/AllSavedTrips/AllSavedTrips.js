@@ -6,7 +6,7 @@ import citiesRequests from '../../firebaseRequests/cities';
 import countriesRequests from '../../firebaseRequests/countries';
 
 import './AllSavedTrips.css';
-// import SingleTrip from '../SingleTrip/SingleTrip';
+import SingleTrip from '../SingleTrip/SingleTrip';
 
 class AllSavedTrips extends React.Component {
   state = {
@@ -43,7 +43,7 @@ class AllSavedTrips extends React.Component {
   }
 
   saveTripEvent = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     // const saveTripObj = {
     //   tripId: e.target.id,
     //   isCompleted: false,
@@ -61,23 +61,23 @@ class AllSavedTrips extends React.Component {
   }
 
   render () {
-    // const savedTripsComponents = this.state.savedTrips.map((trip) => {
-    //   return (
-    //     <SingleTrip
-    //       key={trip.id}
-    //       details={trip}
-    //       cities={this.state.cities}
-    //       countries={this.state.countries}
-    //       activities={this.state.activities}
-    //       saveTripEvent={this.saveTripEvent}
-    //     />
-    //   );
-    // });
     const savedTripsComponents = this.state.savedTrips.map((trip) => {
       return (
-        console.error('savedTrip: ', trip)
+        <SingleTrip
+          key={trip.id}
+          details={trip}
+          cities={this.state.cities}
+          countries={this.state.countries}
+          activities={this.state.activities}
+          saveTripEvent={this.saveTripEvent}
+        />
       );
     });
+    // const savedTripsComponents = this.state.savedTrips.map((trip) => {
+    //   return (
+    //     console.error('savedTrip: ', trip)
+    //   );
+    // });
 
     return (
       <div>
