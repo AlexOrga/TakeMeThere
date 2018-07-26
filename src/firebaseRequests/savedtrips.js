@@ -71,4 +71,17 @@ const removeTrip = (tripId) => {
   });
 };
 
-export default {getSavedTrips, getSingleTripFromAllTrips, saveATrip, removeTrip};
+const updateIsCompleted = (savedTripId, updatedTripObj) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .put(`${constants.firebaseConfig.databaseURL}/savedTrips/${savedTripId}.json`, updatedTripObj)
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+export default {getSavedTrips, getSingleTripFromAllTrips, saveATrip, removeTrip, updateIsCompleted};

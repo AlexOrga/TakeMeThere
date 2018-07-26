@@ -25,8 +25,21 @@ class SingleSavedTrip extends React.Component {
             <p>{trip.description}</p>
             <p>
               <a href={trip.linkUrl}>Click Here To See More About This Location</a>
-              <a href="" id={this.props.details.savedTripId} className="btn btn-success" role="button" onClick={this.props.updateIsComplete}>I Did This Trip!</a>
-              <a href="" id={this.props.details.savedTripId} className="btn btn-danger" role="button" onClick={this.props.removeFromSavedTrips}>Remove Trip</a>
+              <a
+                href=""
+                data-trip-id={this.props.id}
+                savedtripid={this.props.details.savedTripId}
+                className="btn btn-success"
+                role="button"
+                onClick={this.props.updateIsCompletedEvent}
+              >I Did This Trip!</a>
+              <a
+                href=""
+                id={this.props.details.savedTripId}
+                className="btn btn-danger"
+                role="button"
+                onClick={this.props.removeFromSavedTrips}
+              >Remove Trip</a>
             </p>
           </div>
         </div>
