@@ -6,7 +6,7 @@ import citiesRequests from '../../firebaseRequests/cities';
 import countriesRequests from '../../firebaseRequests/countries';
 
 import './AllSavedTrips.css';
-import SingleTrip from '../SingleTrip/SingleTrip';
+import SingleSavedTrip from '../SingleSavedTrip/SingleSavedTrip';
 
 class AllSavedTrips extends React.Component {
   state = {
@@ -42,42 +42,52 @@ class AllSavedTrips extends React.Component {
       });
   }
 
-  saveTripEvent = (e) => {
+  removeFromSavedTrips = (e) => {
     e.preventDefault();
-    // const saveTripObj = {
-    //   tripId: e.target.id,
-    //   isCompleted: false,
-    //   uid: authRequests.getUID(),
-    // };
-    // savedTripsRequests
-    //   .saveATrip(saveTripObj)
-    //   .then(() => {
-    //     console.error('success');
-    //   })
-    //   .catch((err) => {
-    //     console.error('error saving trip', err);
-    //   });
-    console.error('False Alarm!');
+    savedTripsRequests
+      .removeTrip(e.target.id)
+      .then((res) => {
+        savedTripsRequests
+          .getSavedTrips(authRequests.getUID())
+          .then((savedTrips) => {
+            activitiesRequests
+              .getActivities()
+              .then((activities) => {
+                citiesRequests
+                  .getCities()
+                  .then((cities) => {
+                    countriesRequests
+                      .getCountries()
+                      .then((countries) => {
+                        this.setState({savedTrips, activities, cities, countries});
+                      })
+                      .catch();
+                  })
+                  .catch();
+              })
+              .catch();
+          })
+          .catch((err) => {
+            console.error('Error retrieving Saved Trips data', err);
+          });
+      })
+      .catch();
   }
 
   render () {
     const savedTripsComponents = this.state.savedTrips.map((trip) => {
       return (
-        <SingleTrip
-          key={trip.id}
+        <SingleSavedTrip
+          key={trip.savedTripId}
           details={trip}
           cities={this.state.cities}
           countries={this.state.countries}
           activities={this.state.activities}
-          saveTripEvent={this.saveTripEvent}
+          updateIsComplete={this.updateIsComplete}
+          removeFromSavedTrips={this.removeFromSavedTrips}
         />
       );
     });
-    // const savedTripsComponents = this.state.savedTrips.map((trip) => {
-    //   return (
-    //     console.error('savedTrip: ', trip)
-    //   );
-    // });
 
     return (
       <div>

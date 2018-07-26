@@ -11,7 +11,7 @@ const getSavedTrips = (uid) => {
           Object.keys(res.data).forEach((fbKey) => {
             getSingleTripFromAllTrips(res.data[fbKey].tripId)
               .then((singleTrip) => {
-
+                singleTrip.savedTripId = fbKey;
                 savedTrips.push(singleTrip);
               })
               .catch((err) => {
@@ -58,4 +58,17 @@ const saveATrip = (saveTripObj) => {
   });
 };
 
-export default {getSavedTrips, getSingleTripFromAllTrips, saveATrip};
+const removeTrip = (tripId) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .delete(`${constants.firebaseConfig.databaseURL}/savedTrips/${tripId}.json`)
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+export default {getSavedTrips, getSingleTripFromAllTrips, saveATrip, removeTrip};
