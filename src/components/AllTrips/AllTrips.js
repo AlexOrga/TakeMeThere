@@ -6,8 +6,10 @@ import activitiesRequests from '../../firebaseRequests/activities';
 import citiesRequests from '../../firebaseRequests/cities';
 import countriesRequests from '../../firebaseRequests/countries';
 
-import './AllTrips.css';
 import SingleTrip from '../SingleTrip/SingleTrip';
+import FilterCountries from '../FilterCountries/FilterCountries';
+// import DropDownActivities from '../DropDownActivities/DropDownActivities';
+import './AllTrips.css';
 
 class AllTrips extends React.Component {
   state = {
@@ -15,33 +17,11 @@ class AllTrips extends React.Component {
     activities: [],
     cities: [],
     countries: [],
+    countryToFilterBy: '',
   }
 
   componentDidMount () {
     this.retrieveAllTripsForComponent();
-    // allTripsRequests
-    //   .getAllTrips()
-    //   .then((allTrips) => {
-    //     activitiesRequests
-    //       .getActivities()
-    //       .then((activities) => {
-    //         citiesRequests
-    //           .getCities()
-    //           .then((cities) => {
-    //             countriesRequests
-    //               .getCountries()
-    //               .then((countries) => {
-    //                 this.setState({allTrips, activities, cities, countries});
-    //               })
-    //               .catch();
-    //           })
-    //           .catch();
-    //       })
-    //       .catch();
-    //   })
-    //   .catch((err) => {
-    //     console.error('Error retrieving All Trips data', err);
-    //   });
   }
 
   retrieveAllTripsForComponent () {
@@ -116,8 +96,23 @@ class AllTrips extends React.Component {
       });
   }
 
+  setCountryToFilterBy = (e) => {
+    const countryToFilterBy = e.target.id;
+    this.setState({countryToFilterBy});
+    console.log(this.state.allTrips.filter(x => x.countryId === countryToFilterBy));
+  }
+
+  filterByCountry = () => {
+    const countryToFilterBy = this.state.countryToFilterBy;
+    if (countryToFilterBy !== '') {
+      return this.state.allTrips.filter(x => x.countryId === countryToFilterBy);
+    } else {
+      return this.state.allTrips;
+    }
+  }
+
   render () {
-    const allTripsComponents = this.state.allTrips.map((trip) => {
+    const allTripsComponents = this.state.allTrips.filter(this.filterByCountry).map((trip) => {
       return (
         <SingleTrip
           key={trip.id}
@@ -133,6 +128,12 @@ class AllTrips extends React.Component {
     return (
       <div>
         <h1>All Trips</h1>
+        <div>
+          <FilterCountries
+            setCountryToFilterBy={this.setCountryToFilterBy}
+            countries={this.state.countries}
+          />
+        </div>
         <div>
           {allTripsComponents}
         </div>
