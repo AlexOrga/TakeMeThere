@@ -76,7 +76,7 @@ class AllSavedTrips extends React.Component {
 
   updateIsCompletedEvent = (e) => {
     e.preventDefault();
-    const savedTripId = e.target.savedtripid;
+    const savedTripId = e.target.dataset.savedTripId;
     const tripId = e.target.dataset.tripId;
     const updatedSavedTrip = {
       isCompleted: true,
@@ -99,8 +99,6 @@ class AllSavedTrips extends React.Component {
         <SingleSavedTrip
           key={trip.savedTripId}
           details={trip}
-          data-tripid={trip.id}
-          data-savedtripid={trip.savedTripId}
           cities={this.state.cities}
           countries={this.state.countries}
           activities={this.state.activities}

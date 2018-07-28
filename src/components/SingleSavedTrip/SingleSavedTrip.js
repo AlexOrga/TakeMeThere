@@ -27,8 +27,8 @@ class SingleSavedTrip extends React.Component {
               <a href={trip.linkUrl}>Click Here To See More About This Location</a>
               <a
                 href=""
-                data-trip-id={this.props.id}
-                savedtripid={this.props.details.savedTripId}
+                data-trip-id={this.props.details.id}
+                data-saved-trip-id={this.props.details.savedTripId}
                 className="btn btn-success"
                 role="button"
                 onClick={this.props.updateIsCompletedEvent}
