@@ -21,4 +21,17 @@ const getAllTrips = () => {
   });
 };
 
-export default {getAllTrips};
+const removeTrip = (tripId) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .delete(`${constants.firebaseConfig.databaseURL}/allTrips/${tripId}.json`)
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+export default {getAllTrips, removeTrip};

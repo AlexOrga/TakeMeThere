@@ -22,7 +22,7 @@ class AllSavedTrips extends React.Component {
 
   retrieveSavedTripsForComponent () {
     savedTripsRequests
-      .getSavedTrips(authRequests.getUID())
+      .getSavedTripsByUid(authRequests.getUID())
       .then((savedTrips) => {
         activitiesRequests
           .getActivities()

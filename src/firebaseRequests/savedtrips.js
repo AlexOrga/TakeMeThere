@@ -1,7 +1,7 @@
 import axios from 'axios';
 import constants from '../constants';
 
-const getSavedTrips = (uid) => {
+const getSavedTripsByUid = (uid) => {
   return new Promise((resolve, reject) => {
     axios
       .get(`${constants.firebaseConfig.databaseURL}/savedTrips.json?orderBy="uid"&equalTo="${uid}"`)
@@ -40,6 +40,26 @@ const getSingleTripFromAllTrips = (savedTripId) => {
           singleTrip = res.data;
         }
         resolve(singleTrip);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+const getAllSavedTrips = () => {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(`${constants.firebaseConfig.databaseURL}/savedTrips.json`)
+      .then((res) => {
+        const allSavedTrips = [];
+        if (res.data !== 'null') {
+          Object.keys(res.data).forEach((fbKey) => {
+            res.data[fbKey].id = fbKey;
+            allSavedTrips.push(res.data[fbKey]);
+          });
+        }
+        resolve(allSavedTrips);
       })
       .catch((err) => {
         reject(err);
@@ -86,4 +106,11 @@ const updateIsCompleted = (savedTripId, updatedTripObj) => {
   });
 };
 
-export default {getSavedTrips, getSingleTripFromAllTrips, saveATrip, removeTrip, updateIsCompleted};
+export default {
+  getSavedTripsByUid,
+  getSingleTripFromAllTrips,
+  getAllSavedTrips,
+  saveATrip,
+  removeTrip,
+  updateIsCompleted,
+};
