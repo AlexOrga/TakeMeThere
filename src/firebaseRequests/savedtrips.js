@@ -9,9 +9,11 @@ const getSavedTrips = (uid) => {
         const savedTrips = [];
         if (res.data !== 'null') {
           Object.keys(res.data).forEach((fbKey) => {
+            const isCompleted = res.data[fbKey].isCompleted;
             getSingleTripFromAllTrips(res.data[fbKey].tripId)
               .then((singleTrip) => {
                 singleTrip.savedTripId = fbKey;
+                singleTrip.isCompleted = isCompleted;
                 savedTrips.push(singleTrip);
               })
               .catch((err) => {
@@ -71,4 +73,17 @@ const removeTrip = (tripId) => {
   });
 };
 
-export default {getSavedTrips, getSingleTripFromAllTrips, saveATrip, removeTrip};
+const updateIsCompleted = (savedTripId, updatedTripObj) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .put(`${constants.firebaseConfig.databaseURL}/savedTrips/${savedTripId}.json`, updatedTripObj)
+      .then((res) => {
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+
+export default {getSavedTrips, getSingleTripFromAllTrips, saveATrip, removeTrip, updateIsCompleted};

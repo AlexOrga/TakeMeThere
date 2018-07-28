@@ -17,6 +17,10 @@ class AllSavedTrips extends React.Component {
   }
 
   componentDidMount () {
+    this.retrieveSavedTripsForComponent();
+  }
+
+  retrieveSavedTripsForComponent () {
     savedTripsRequests
       .getSavedTrips(authRequests.getUID())
       .then((savedTrips) => {
@@ -47,31 +51,35 @@ class AllSavedTrips extends React.Component {
     savedTripsRequests
       .removeTrip(e.target.id)
       .then((res) => {
-        savedTripsRequests
-          .getSavedTrips(authRequests.getUID())
-          .then((savedTrips) => {
-            activitiesRequests
-              .getActivities()
-              .then((activities) => {
-                citiesRequests
-                  .getCities()
-                  .then((cities) => {
-                    countriesRequests
-                      .getCountries()
-                      .then((countries) => {
-                        this.setState({savedTrips, activities, cities, countries});
-                      })
-                      .catch();
-                  })
-                  .catch();
-              })
-              .catch();
-          })
-          .catch((err) => {
-            console.error('Error retrieving Saved Trips data', err);
-          });
+        this.retrieveSavedTripsForComponent();
       })
       .catch();
+  }
+
+  updateIsCompletedEvent = (e) => {
+    e.preventDefault();
+    const savedTripId = e.target.dataset.savedTripId;
+    const tripId = e.target.dataset.tripId;
+    const completedOrNot = e.target.dataset.isCompleted;
+
+    const updatedSavedTrip = completedOrNot ? {
+      isCompleted: false,
+      tripId: tripId,
+      uid: authRequests.getUID(),
+    } : {
+      isCompleted: true,
+      tripId: tripId,
+      uid: authRequests.getUID(),
+    };
+
+    savedTripsRequests
+      .updateIsCompleted(savedTripId, updatedSavedTrip)
+      .then((res) => {
+        this.retrieveSavedTripsForComponent();
+      })
+      .catch((err) => {
+        console.error('Error updated Saved Trip');
+      });
   }
 
   render () {
@@ -83,7 +91,7 @@ class AllSavedTrips extends React.Component {
           cities={this.state.cities}
           countries={this.state.countries}
           activities={this.state.activities}
-          updateIsComplete={this.updateIsComplete}
+          updateIsCompletedEvent={this.updateIsCompletedEvent}
           removeFromSavedTrips={this.removeFromSavedTrips}
         />
       );

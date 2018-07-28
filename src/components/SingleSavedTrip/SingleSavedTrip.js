@@ -4,7 +4,7 @@ import './SingleSavedTrip.css';
 
 class SingleSavedTrip extends React.Component {
 
-  renderTrip (trip) {
+  renderTrip (trip, isCompleted) {
     const cities = this.props.cities;
     const currentCity = cities.find(x => x.id === trip.cityId);
 
@@ -14,33 +14,81 @@ class SingleSavedTrip extends React.Component {
     const activities = this.props.activities;
     const currentActivity = activities.find(x => x.id === trip.activityId);
 
-    return (
-      <div className="col-sm-6 col-md-4">
-        <div className="thumbnail">
-          <img src="..." alt="..." />
-          <div className="caption">
-            <h3>{currentCity.name}</h3>
-            <h5>{currentCountry.name}</h5>
-            <p>{currentActivity.name}</p>
-            <p>{trip.description}</p>
-            <p>
-              <a href={trip.linkUrl}>Click Here To See More About This Location</a>
-              <a href="" id={this.props.details.savedTripId} className="btn btn-success" role="button" onClick={this.props.updateIsComplete}>I Did This Trip!</a>
-              <a href="" id={this.props.details.savedTripId} className="btn btn-danger" role="button" onClick={this.props.removeFromSavedTrips}>Remove Trip</a>
-            </p>
+    if (isCompleted) {
+      return (
+        <div className="col-sm-6 col-md-4">
+          <div className="thumbnail isCompleted">
+            <img src="..." alt="..." />
+            <div className="caption">
+              <h3>{currentCity.name}</h3>
+              <h5>{currentCountry.name}</h5>
+              <p>{currentActivity.name}</p>
+              <p>{trip.description}</p>
+              <p>
+                <a href={trip.linkUrl}>Click Here To See More About This Location</a>
+                <a
+                  href=""
+                  data-trip-id={this.props.details.id}
+                  data-saved-trip-id={this.props.details.savedTripId}
+                  data-is-completed={this.props.details.isCompleted}
+                  className="btn btn-success"
+                  role="button"
+                  onClick={this.props.updateIsCompletedEvent}
+                >Un-Do This Trip!</a>
+                <a
+                  href=""
+                  id={this.props.details.savedTripId}
+                  className="btn btn-danger"
+                  role="button"
+                  onClick={this.props.removeFromSavedTrips}
+                >Remove Trip</a>
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-    );
-  }
+      );
+    } else {
+      return (
+        <div className="col-sm-6 col-md-4">
+          <div className = "thumbnail">
+            <img src="..." alt="..." />
+            <div className="caption">
+              <h3>{currentCity.name}</h3>
+              <h5>{currentCountry.name}</h5>
+              <p>{currentActivity.name}</p>
+              <p>{trip.description}</p>
+              <p>
+                <a href={trip.linkUrl}>Click Here To See More About This Location</a>
+                <a
+                  href=""
+                  data-trip-id={this.props.details.id}
+                  data-saved-trip-id={this.props.details.savedTripId}
+                  className="btn btn-success"
+                  role="button"
+                  onClick={this.props.updateIsCompletedEvent}
+                >I Did This Trip!</a>
+                <a
+                  href=""
+                  id={this.props.details.savedTripId}
+                  className="btn btn-danger"
+                  role="button"
+                  onClick={this.props.removeFromSavedTrips}
+                >Remove Trip</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      );
+    }
+  };
 
   render () {
-    // const cities = this.props.cities;
     const details = this.props.details;
-    // const countries = this.props.countries;
+    const isCompleted = details.isCompleted;
+
     return (
       <div>
-        {this.renderTrip(details)}
+        {this.renderTrip(details, isCompleted)}
       </div>
     );
   }
