@@ -93,7 +93,8 @@ class NewTrip extends React.Component {
     return this.state.newTrip;
   }
 
-  checkCityForId = () => {
+  saveTripEvent = (e) => {
+    e.preventDefault();
     const cities = this.state.cities;
     const currentCountryId = this.state.newTrip.countryId;
     const currentCity = this.state.currentCity.toLowerCase();
@@ -112,23 +113,6 @@ class NewTrip extends React.Component {
           this.addCityId(fbKey);
         })
         .catch();
-    }
-  }
-
-  saveTripEvent = (e) => {
-    e.preventDefault();
-    this.checkCityForId();
-    if (
-      this.state.newTrip.activityId !== '' &&
-      this.state.newTrip.cityId !== '' &&
-      this.state.newTrip.countryId !== '' &&
-      this.state.newTrip.description !== '' &&
-      this.state.newTrip.linkUrl !== ''
-    ) {
-      const newTripObj = this.state.newTrip;
-      console.error('newTripObj: ', newTripObj);
-    } else {
-      console.error('sorry bout ye luck');
     }
   }
 
@@ -195,7 +179,7 @@ class NewTrip extends React.Component {
                 type="submit"
                 className="btn btn-default"
                 onClick={this.saveTripEvent}
-              >Sign in</button>
+              >Save</button>
             </div>
           </div>
         </form>

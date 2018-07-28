@@ -18,6 +18,33 @@ class AllTrips extends React.Component {
   }
 
   componentDidMount () {
+    this.retrieveAllTripsForComponent();
+    // allTripsRequests
+    //   .getAllTrips()
+    //   .then((allTrips) => {
+    //     activitiesRequests
+    //       .getActivities()
+    //       .then((activities) => {
+    //         citiesRequests
+    //           .getCities()
+    //           .then((cities) => {
+    //             countriesRequests
+    //               .getCountries()
+    //               .then((countries) => {
+    //                 this.setState({allTrips, activities, cities, countries});
+    //               })
+    //               .catch();
+    //           })
+    //           .catch();
+    //       })
+    //       .catch();
+    //   })
+    //   .catch((err) => {
+    //     console.error('Error retrieving All Trips data', err);
+    //   });
+  }
+
+  retrieveAllTripsForComponent () {
     allTripsRequests
       .getAllTrips()
       .then((allTrips) => {
@@ -60,6 +87,35 @@ class AllTrips extends React.Component {
       });
   }
 
+  removeTripEvent = (e) => {
+    e.preventDefault();
+    const tripToRemove = e.target.id;
+    allTripsRequests
+      .removeTrip(tripToRemove)
+      .then(() => {
+        this.retrieveAllTripsForComponent();
+        savedTripsRequests
+          .getAllSavedTrips()
+          .then((allSavedTrips) => {
+            const savedTripsToRemove = allSavedTrips.filter(x => x.tripId === tripToRemove);
+            savedTripsToRemove.forEach(savedTrip => {
+              savedTripsRequests
+                .removeTrip(savedTrip.id)
+                .then()
+                .catch((err) => {
+                  console.error('Error removing trip from savedTrips', err);
+                });
+            });
+          })
+          .catch((err) => {
+            console.error('Error retrieving allSavedTrips', err);
+          });
+      })
+      .catch((err) => {
+        console.error('Error removing user trip from allTrips', err);
+      });
+  }
+
   render () {
     const allTripsComponents = this.state.allTrips.map((trip) => {
       return (
@@ -70,6 +126,7 @@ class AllTrips extends React.Component {
           countries={this.state.countries}
           activities={this.state.activities}
           saveTripEvent={this.saveTripEvent}
+          removeTripEvent={this.removeTripEvent}
         />
       );
     });
