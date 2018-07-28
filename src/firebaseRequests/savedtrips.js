@@ -9,9 +9,11 @@ const getSavedTrips = (uid) => {
         const savedTrips = [];
         if (res.data !== 'null') {
           Object.keys(res.data).forEach((fbKey) => {
+            const isCompleted = res.data[fbKey].isCompleted;
             getSingleTripFromAllTrips(res.data[fbKey].tripId)
               .then((singleTrip) => {
                 singleTrip.savedTripId = fbKey;
+                singleTrip.isCompleted = isCompleted;
                 savedTrips.push(singleTrip);
               })
               .catch((err) => {
