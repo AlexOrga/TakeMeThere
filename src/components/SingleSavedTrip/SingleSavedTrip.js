@@ -30,6 +30,7 @@ class SingleSavedTrip extends React.Component {
                   href=""
                   data-trip-id={this.props.details.id}
                   data-saved-trip-id={this.props.details.savedTripId}
+                  data-is-completed={this.props.details.isCompleted}
                   className="btn btn-success"
                   role="button"
                   onClick={this.props.updateIsCompletedEvent}

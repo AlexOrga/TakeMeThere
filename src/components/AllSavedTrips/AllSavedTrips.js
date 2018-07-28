@@ -17,6 +17,10 @@ class AllSavedTrips extends React.Component {
   }
 
   componentDidMount () {
+    this.retrieveSavedTripsForComponent();
+  }
+
+  retrieveSavedTripsForComponent () {
     savedTripsRequests
       .getSavedTrips(authRequests.getUID())
       .then((savedTrips) => {
@@ -47,29 +51,7 @@ class AllSavedTrips extends React.Component {
     savedTripsRequests
       .removeTrip(e.target.id)
       .then((res) => {
-        savedTripsRequests
-          .getSavedTrips(authRequests.getUID())
-          .then((savedTrips) => {
-            activitiesRequests
-              .getActivities()
-              .then((activities) => {
-                citiesRequests
-                  .getCities()
-                  .then((cities) => {
-                    countriesRequests
-                      .getCountries()
-                      .then((countries) => {
-                        this.setState({savedTrips, activities, cities, countries});
-                      })
-                      .catch();
-                  })
-                  .catch();
-              })
-              .catch();
-          })
-          .catch((err) => {
-            console.error('Error retrieving Saved Trips data', err);
-          });
+        this.retrieveSavedTripsForComponent();
       })
       .catch();
   }
@@ -78,15 +60,22 @@ class AllSavedTrips extends React.Component {
     e.preventDefault();
     const savedTripId = e.target.dataset.savedTripId;
     const tripId = e.target.dataset.tripId;
-    const updatedSavedTrip = {
+    const completedOrNot = e.target.dataset.isCompleted;
+
+    const updatedSavedTrip = completedOrNot ? {
+      isCompleted: false,
+      tripId: tripId,
+      uid: authRequests.getUID(),
+    } : {
       isCompleted: true,
       tripId: tripId,
       uid: authRequests.getUID(),
     };
+
     savedTripsRequests
       .updateIsCompleted(savedTripId, updatedSavedTrip)
       .then((res) => {
-        console.error(res);
+        this.retrieveSavedTripsForComponent();
       })
       .catch((err) => {
         console.error('Error updated Saved Trip');
