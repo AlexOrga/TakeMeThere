@@ -3,10 +3,6 @@ import { DropdownButton, MenuItem } from 'react-bootstrap';
 
 import './FilterCountries.css';
 
-// const consoleEvent = (e) => {
-//   console.error(e.target.id);
-// };
-
 const title = 'Select A Country';
 
 class FilterCountries extends React.Component {

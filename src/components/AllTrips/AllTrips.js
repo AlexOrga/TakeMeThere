@@ -60,9 +60,7 @@ class AllTrips extends React.Component {
     };
     savedTripsRequests
       .saveATrip(saveTripObj)
-      .then(() => {
-        console.error('success');
-      })
+      .then()
       .catch((err) => {
         console.error('error saving trip', err);
       });
@@ -100,7 +98,6 @@ class AllTrips extends React.Component {
   setCountryToFilterBy = (e) => {
     const countryToFilterBy = e.target.id;
     this.setState({countryToFilterBy});
-    console.log(this.state.allTrips.filter(x => x.countryId === countryToFilterBy));
   }
 
   filterByCountry = (trip) => {
@@ -115,7 +112,6 @@ class AllTrips extends React.Component {
   setActivityToFilterBy = (e) => {
     const activityToFilterBy = e.target.id;
     this.setState({activityToFilterBy});
-    console.log(this.state.allTrips.filter(x => x.activityId === activityToFilterBy));
   }
 
   filterByActivity = (trip) => {
