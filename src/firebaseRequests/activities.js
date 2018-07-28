@@ -15,6 +15,11 @@ const getActivities = () => {
             activitiesArray.push(newActivityObject);
           });
         }
+        activitiesArray.sort((a, b) => {
+          const textA = a.name.toLowerCase();
+          const textB = b.name.toLowerCase();
+          return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+        });
         resolve(activitiesArray);
       })
       .catch((err) => {
