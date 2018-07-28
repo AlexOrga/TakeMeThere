@@ -102,14 +102,23 @@ class AllTrips extends React.Component {
     console.log(this.state.allTrips.filter(x => x.countryId === countryToFilterBy));
   }
 
-  filterByCountry = () => {
+  filterByCountry = (trip) => {
     const countryToFilterBy = this.state.countryToFilterBy;
     if (countryToFilterBy !== '') {
-      return this.state.allTrips.filter(x => x.countryId === countryToFilterBy);
+      return trip.countryId === countryToFilterBy;
     } else {
-      return this.state.allTrips;
+      return true;
     }
   }
+
+  // filterByCountry = (trip) => {
+  //   const countryToFilterBy = this.state.countryToFilterBy;
+  //   if (countryToFilterBy !== '') {
+  //     return trip.countryId === countryToFilterBy;
+  //   } else {
+  //     return true;
+  //   }
+  // }
 
   render () {
     const allTripsComponents = this.state.allTrips.filter(this.filterByCountry).map((trip) => {
