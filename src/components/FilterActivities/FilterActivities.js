@@ -1,17 +1,17 @@
 import React from 'react';
 import { DropdownButton, MenuItem } from 'react-bootstrap';
 
-import './DropDownActivities.css';
+import './FilterActivities.css';
 
 const title = 'Select an Activity';
 
-class DropDown extends React.Component {
+class FilterActivities extends React.Component {
   state = {
     currentActivity: '',
   }
 
   changeTitle = (e, activity) => {
-    this.props.addActivity(e);
+    this.props.setActivityToFilterBy(e);
     this.setState({currentActivity: activity});
   }
 
@@ -45,4 +45,4 @@ class DropDown extends React.Component {
   }
 }
 
-export default DropDown;
+export default FilterActivities;

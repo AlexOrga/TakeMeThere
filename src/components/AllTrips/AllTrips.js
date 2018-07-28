@@ -8,7 +8,7 @@ import countriesRequests from '../../firebaseRequests/countries';
 
 import SingleTrip from '../SingleTrip/SingleTrip';
 import FilterCountries from '../FilterCountries/FilterCountries';
-// import DropDownActivities from '../DropDownActivities/DropDownActivities';
+import FilterActivities from '../FilterActivities/FilterActivities';
 import './AllTrips.css';
 
 class AllTrips extends React.Component {
@@ -18,6 +18,7 @@ class AllTrips extends React.Component {
     cities: [],
     countries: [],
     countryToFilterBy: '',
+    activityToFilterBy: '',
   }
 
   componentDidMount () {
@@ -111,17 +112,23 @@ class AllTrips extends React.Component {
     }
   }
 
-  // filterByCountry = (trip) => {
-  //   const countryToFilterBy = this.state.countryToFilterBy;
-  //   if (countryToFilterBy !== '') {
-  //     return trip.countryId === countryToFilterBy;
-  //   } else {
-  //     return true;
-  //   }
-  // }
+  setActivityToFilterBy = (e) => {
+    const activityToFilterBy = e.target.id;
+    this.setState({activityToFilterBy});
+    console.log(this.state.allTrips.filter(x => x.activityId === activityToFilterBy));
+  }
+
+  filterByActivity = (trip) => {
+    const activityToFilterBy = this.state.activityToFilterBy;
+    if (activityToFilterBy !== '') {
+      return trip.activityId === activityToFilterBy;
+    } else {
+      return true;
+    }
+  }
 
   render () {
-    const allTripsComponents = this.state.allTrips.filter(this.filterByCountry).map((trip) => {
+    const allTripsComponents = this.state.allTrips.filter(this.filterByCountry).filter(this.filterByActivity).map((trip) => {
       return (
         <SingleTrip
           key={trip.id}
@@ -141,6 +148,10 @@ class AllTrips extends React.Component {
           <FilterCountries
             setCountryToFilterBy={this.setCountryToFilterBy}
             countries={this.state.countries}
+          />
+          <FilterActivities
+            setActivityToFilterBy={this.setActivityToFilterBy}
+            activities={this.state.activities}
           />
         </div>
         <div>
