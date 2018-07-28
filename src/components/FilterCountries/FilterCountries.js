@@ -1,17 +1,17 @@
 import React from 'react';
 import { DropdownButton, MenuItem } from 'react-bootstrap';
 
-import './DropDownCountries.css';
+import './FilterCountries.css';
 
 const title = 'Select A Country';
 
-class DropDown extends React.Component {
+class FilterCountries extends React.Component {
   state = {
     currentCountry: '',
   }
 
   changeTitle = (e, country) => {
-    this.props.addCountry(e);
+    this.props.setCountryToFilterBy(e);
     this.setState({currentCountry: country});
   }
 
@@ -45,4 +45,4 @@ class DropDown extends React.Component {
   }
 }
 
-export default DropDown;
+export default FilterCountries;

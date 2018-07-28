@@ -6,8 +6,10 @@ import activitiesRequests from '../../firebaseRequests/activities';
 import citiesRequests from '../../firebaseRequests/cities';
 import countriesRequests from '../../firebaseRequests/countries';
 
-import './AllTrips.css';
 import SingleTrip from '../SingleTrip/SingleTrip';
+import FilterCountries from '../FilterCountries/FilterCountries';
+import FilterActivities from '../FilterActivities/FilterActivities';
+import './AllTrips.css';
 
 class AllTrips extends React.Component {
   state = {
@@ -15,33 +17,12 @@ class AllTrips extends React.Component {
     activities: [],
     cities: [],
     countries: [],
+    countryToFilterBy: '',
+    activityToFilterBy: '',
   }
 
   componentDidMount () {
     this.retrieveAllTripsForComponent();
-    // allTripsRequests
-    //   .getAllTrips()
-    //   .then((allTrips) => {
-    //     activitiesRequests
-    //       .getActivities()
-    //       .then((activities) => {
-    //         citiesRequests
-    //           .getCities()
-    //           .then((cities) => {
-    //             countriesRequests
-    //               .getCountries()
-    //               .then((countries) => {
-    //                 this.setState({allTrips, activities, cities, countries});
-    //               })
-    //               .catch();
-    //           })
-    //           .catch();
-    //       })
-    //       .catch();
-    //   })
-    //   .catch((err) => {
-    //     console.error('Error retrieving All Trips data', err);
-    //   });
   }
 
   retrieveAllTripsForComponent () {
@@ -79,9 +60,7 @@ class AllTrips extends React.Component {
     };
     savedTripsRequests
       .saveATrip(saveTripObj)
-      .then(() => {
-        console.error('success');
-      })
+      .then()
       .catch((err) => {
         console.error('error saving trip', err);
       });
@@ -116,8 +95,36 @@ class AllTrips extends React.Component {
       });
   }
 
+  setCountryToFilterBy = (e) => {
+    const countryToFilterBy = e.target.id;
+    this.setState({countryToFilterBy});
+  }
+
+  filterByCountry = (trip) => {
+    const countryToFilterBy = this.state.countryToFilterBy;
+    if (countryToFilterBy !== '') {
+      return trip.countryId === countryToFilterBy;
+    } else {
+      return true;
+    }
+  }
+
+  setActivityToFilterBy = (e) => {
+    const activityToFilterBy = e.target.id;
+    this.setState({activityToFilterBy});
+  }
+
+  filterByActivity = (trip) => {
+    const activityToFilterBy = this.state.activityToFilterBy;
+    if (activityToFilterBy !== '') {
+      return trip.activityId === activityToFilterBy;
+    } else {
+      return true;
+    }
+  }
+
   render () {
-    const allTripsComponents = this.state.allTrips.map((trip) => {
+    const allTripsComponents = this.state.allTrips.filter(this.filterByCountry).filter(this.filterByActivity).map((trip) => {
       return (
         <SingleTrip
           key={trip.id}
@@ -133,6 +140,16 @@ class AllTrips extends React.Component {
     return (
       <div>
         <h1>All Trips</h1>
+        <div>
+          <FilterCountries
+            setCountryToFilterBy={this.setCountryToFilterBy}
+            countries={this.state.countries}
+          />
+          <FilterActivities
+            setActivityToFilterBy={this.setActivityToFilterBy}
+            activities={this.state.activities}
+          />
+        </div>
         <div>
           {allTripsComponents}
         </div>
