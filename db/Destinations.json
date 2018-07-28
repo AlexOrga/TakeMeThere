@@ -1,9 +1,9 @@
 {
   "activities" : {
-    "activity1" : "Hiking",
-    "activity2" : "Surfing",
-    "activity4" : "Sightseeing",
-    "activty3" : "Entertainment/Night-Life",
+    "activity0" : "Hiking",
+    "activity1" : "Surfing",
+    "activty2" : "Entertainment/Night-Life",
+    "activity3" : "Sightseeing",
     "activity4" : "Art",
     "activity5" : "Shopping",
     "activity6" : "Wildlife",
