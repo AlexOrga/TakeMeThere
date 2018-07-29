@@ -25,8 +25,9 @@ class SingleTrip extends React.Component {
           <div className="thumbnail">
             <img src="..." alt="..." />
             <div className="caption">
-              <h3>{currentCity.name}</h3>
-              <h5>{currentCountry.name}</h5>
+              <h2>{details.activityName}</h2>
+              <h4>{currentCity.name}</h4>
+              <h4>{currentCountry.name}</h4>
               <p>{currentActivity.name}</p>
               <p>{details.description}</p>
               <p>
@@ -46,8 +47,9 @@ class SingleTrip extends React.Component {
           <div className="thumbnail">
             <img src="..." alt="..." />
             <div className="caption">
-              <h3>{currentCity.name}</h3>
-              <h5>{currentCountry.name}</h5>
+              <h2>{details.activityName}</h2>
+              <h4>{currentCity.name}</h4>
+              <h4>{currentCountry.name}</h4>
               <p>{currentActivity.name}</p>
               <p>{details.description}</p>
               <p>

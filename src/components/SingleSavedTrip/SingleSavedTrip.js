@@ -4,15 +4,15 @@ import './SingleSavedTrip.css';
 
 class SingleSavedTrip extends React.Component {
 
-  renderTrip (trip, isCompleted) {
+  renderTrip (details, isCompleted) {
     const cities = this.props.cities;
-    const currentCity = cities.find(x => x.id === trip.cityId);
+    const currentCity = cities.find(x => x.id === details.cityId);
 
     const countries = this.props.countries;
-    const currentCountry = countries.find(x => x.id === trip.countryId);
+    const currentCountry = countries.find(x => x.id === details.countryId);
 
     const activities = this.props.activities;
-    const currentActivity = activities.find(x => x.id === trip.activityId);
+    const currentActivity = activities.find(x => x.id === details.activityId);
 
     if (isCompleted) {
       return (
@@ -20,12 +20,13 @@ class SingleSavedTrip extends React.Component {
           <div className="thumbnail isCompleted">
             <img src="..." alt="..." />
             <div className="caption">
-              <h3>{currentCity.name}</h3>
-              <h5>{currentCountry.name}</h5>
+              <h2>{details.activityName}</h2>
+              <h4>{currentCity.name}</h4>
+              <h4>{currentCountry.name}</h4>
               <p>{currentActivity.name}</p>
-              <p>{trip.description}</p>
+              <p>{details.description}</p>
               <p>
-                <a href={trip.linkUrl}>Click Here To See More About This Location</a>
+                <a href={details.linkUrl}>Click Here To See More About This Location</a>
                 <a
                   href=""
                   data-trip-id={this.props.details.id}
@@ -53,12 +54,13 @@ class SingleSavedTrip extends React.Component {
           <div className = "thumbnail">
             <img src="..." alt="..." />
             <div className="caption">
-              <h3>{currentCity.name}</h3>
-              <h5>{currentCountry.name}</h5>
+              <h2>{details.activityName}</h2>
+              <h4>{currentCity.name}</h4>
+              <h4>{currentCountry.name}</h4>
               <p>{currentActivity.name}</p>
-              <p>{trip.description}</p>
+              <p>{details.description}</p>
               <p>
-                <a href={trip.linkUrl}>Click Here To See More About This Location</a>
+                <a href={details.linkUrl}>Click Here To See More About This Location</a>
                 <a
                   href=""
                   data-trip-id={this.props.details.id}
