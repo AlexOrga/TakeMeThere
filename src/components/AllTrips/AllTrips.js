@@ -124,8 +124,8 @@ class AllTrips extends React.Component {
   }
 
   render () {
-    const allTripsComponents = this.state.allTrips.filter(this.filterByCountry).filter(this.filterByActivity).map((trip) => {
-      return (
+    const allTripsComponents = this.state.allTrips.filter(this.filterByCountry).filter(this.filterByActivity).map((trip, index) => {
+      return [
         <SingleTrip
           key={trip.id}
           details={trip}
@@ -134,23 +134,26 @@ class AllTrips extends React.Component {
           activities={this.state.activities}
           saveTripEvent={this.saveTripEvent}
           removeTripEvent={this.removeTripEvent}
-        />
-      );
+        />,
+        index % 3 === 2 && <div className='clearfix'></div>,
+      ];
     });
     return (
       <div>
         <h1>All Trips</h1>
-        <div>
+        <div className='col-md-6 col-md-offset-3'>
           <FilterCountries
             setCountryToFilterBy={this.setCountryToFilterBy}
             countries={this.state.countries}
           />
+        </div>
+        <div className='col-md-6 col-md-offset-3'>
           <FilterActivities
             setActivityToFilterBy={this.setActivityToFilterBy}
             activities={this.state.activities}
           />
         </div>
-        <div>
+        <div className='row'>
           {allTripsComponents}
         </div>
       </div>
