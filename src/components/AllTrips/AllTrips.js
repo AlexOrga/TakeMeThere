@@ -123,10 +123,9 @@ class AllTrips extends React.Component {
     }
   }
 
-  resetFilters = () => {
+  resetCountryFilter = () => {
     this.setState({
       countryToFilterBy: '',
-      activityToFilterBy: '',
     });
   }
 
@@ -158,6 +157,7 @@ class AllTrips extends React.Component {
           <FilterCountries
             setCountryToFilterBy={this.setCountryToFilterBy}
             countries={this.state.countries}
+            resetCountryFilter={this.resetCountryFilter}
           />
         </div>
         <div className='col-md-6 text-center'>
@@ -166,9 +166,6 @@ class AllTrips extends React.Component {
             activities={this.state.activities}
             resetActivityFilter={this.resetActivityFilter}
           />
-        </div>
-        <div className='col-md-12 text-center'>
-          <button onClick={this.resetFilters}>Reset Filters</button>
         </div>
         <div className='row'>
           {allTripsComponents}
