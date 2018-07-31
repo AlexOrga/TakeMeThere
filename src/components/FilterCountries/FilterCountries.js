@@ -15,6 +15,11 @@ class FilterCountries extends React.Component {
     this.setState({currentCountry: country});
   }
 
+  resetFilter = () => {
+    this.props.resetCountryFilter();
+    this.setState({currentCountry: ''});
+  }
+
   menuItemComponent = (country) => {
     return (
       <MenuItem
@@ -38,6 +43,9 @@ class FilterCountries extends React.Component {
           key='12'
           id={`dropdown-basic-12`}
         >
+          <MenuItem>
+            <button className='col-md-12 btn-danger' onClick={this.resetFilter}>Reset This Filter</button>
+          </MenuItem>
           {countries.map(this.menuItemComponent)}
         </DropdownButton>
       </div>

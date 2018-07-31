@@ -77,6 +77,7 @@ class NewTrip extends React.Component {
     newTripRequests
       .postNewTrip(newTripObj)
       .then(() => {
+        this.props.history.push('/alltrips');
         console.error('success');
       })
       .catch(() => {
