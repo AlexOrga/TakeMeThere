@@ -123,6 +123,19 @@ class AllTrips extends React.Component {
     }
   }
 
+  resetFilters = () => {
+    this.setState({
+      countryToFilterBy: '',
+      activityToFilterBy: '',
+    });
+  }
+
+  resetActivityFilter = () => {
+    this.setState({
+      activityToFilterBy: '',
+    });
+  }
+
   render () {
     const allTripsComponents = this.state.allTrips.filter(this.filterByCountry).filter(this.filterByActivity).map((trip, index) => {
       return [
@@ -141,17 +154,21 @@ class AllTrips extends React.Component {
     return (
       <div>
         <h1>All Trips</h1>
-        <div className='col-md-6 col-md-offset-3'>
+        <div className='col-md-6 text-center'>
           <FilterCountries
             setCountryToFilterBy={this.setCountryToFilterBy}
             countries={this.state.countries}
           />
         </div>
-        <div className='col-md-6 col-md-offset-3'>
+        <div className='col-md-6 text-center'>
           <FilterActivities
             setActivityToFilterBy={this.setActivityToFilterBy}
             activities={this.state.activities}
+            resetActivityFilter={this.resetActivityFilter}
           />
+        </div>
+        <div className='col-md-12 text-center'>
+          <button onClick={this.resetFilters}>Reset Filters</button>
         </div>
         <div className='row'>
           {allTripsComponents}

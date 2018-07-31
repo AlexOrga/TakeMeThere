@@ -15,6 +15,11 @@ class FilterActivities extends React.Component {
     this.setState({currentActivity: activity});
   }
 
+  resetFilter = () => {
+    this.props.resetActivityFilter();
+    this.setState({currentActivity: ''});
+  }
+
   menuItemComponent = (activity) => {
     return (
       <MenuItem
@@ -38,6 +43,9 @@ class FilterActivities extends React.Component {
           key='12'
           id={`dropdown-basic-12`}
         >
+          <MenuItem>
+            <button className='col-md-12 btn-danger' onClick={this.resetFilter}>Reset This Filter</button>
+          </MenuItem>
           {activities.map(this.menuItemComponent)}
         </DropdownButton>
       </div>
