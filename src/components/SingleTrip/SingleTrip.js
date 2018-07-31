@@ -8,6 +8,8 @@ class SingleTrip extends React.Component {
   renderTrip (details) {
     const cities = this.props.cities;
     const currentCity = cities.find(x => x.id === details.cityId);
+    let cityName = currentCity.name;
+    cityName = cityName.charAt(0).toUpperCase() + cityName.substr(1);
 
     const countries = this.props.countries;
     const currentCountry = countries.find(x => x.id === details.countryId);
@@ -23,10 +25,10 @@ class SingleTrip extends React.Component {
 
         <div className="col-sm-6 col-md-4">
           <div className="thumbnail">
-            <img src="..." alt="..." />
             <div className="caption">
-              <h3>{currentCity.name}</h3>
-              <h5>{currentCountry.name}</h5>
+              <h2>{details.activityName}</h2>
+              <h4>{cityName}</h4>
+              <h4>{currentCountry.name}</h4>
               <p>{currentActivity.name}</p>
               <p>{details.description}</p>
               <p>
@@ -44,10 +46,10 @@ class SingleTrip extends React.Component {
       return (
         <div className="col-sm-6 col-md-4">
           <div className="thumbnail">
-            <img src="..." alt="..." />
             <div className="caption">
-              <h3>{currentCity.name}</h3>
-              <h5>{currentCountry.name}</h5>
+              <h2>{details.activityName}</h2>
+              <h4>{cityName}</h4>
+              <h4>{currentCountry.name}</h4>
               <p>{currentActivity.name}</p>
               <p>{details.description}</p>
               <p>

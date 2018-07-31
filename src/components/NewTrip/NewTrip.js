@@ -16,6 +16,7 @@ class NewTrip extends React.Component {
     activities: [],
     countries: [],
     newTrip: {
+      activityName: '',
       activityId: '',
       cityId: '',
       countryId: '',
@@ -50,6 +51,12 @@ class NewTrip extends React.Component {
     let tempCity = {...this.state.currentCity};
     tempCity = e.target.value;
     this.setState({currentCity: tempCity});
+  }
+
+  addCurrentActivityName = (e) => {
+    const newTrip = {...this.state.newTrip};
+    newTrip.activityName = e.target.value;
+    this.setState({newTrip});
   }
 
   addCountryId = (e) => {
@@ -106,7 +113,6 @@ class NewTrip extends React.Component {
         name: currentCity,
         countryId: currentCountryId,
       };
-      console.error('newCityObj', newCityObj);
       citiesRequests
         .postNewCity(newCityObj)
         .then((fbKey) => {
@@ -122,6 +128,19 @@ class NewTrip extends React.Component {
       <div>
         <h1 className="header">NewTrip</h1>
         <form className="form-horizontal">
+          <div className="form-group">
+            <label htmlFor="inputActivityName" className="col-sm-2 control-label">Activity Name</label>
+            <div className="col-sm-10">
+              <input
+                type="text"
+                className="form-control"
+                id="inputActivityName"
+                placeholder="Activity Name"
+                value={this.state.currentActivityName}
+                onChange={this.addCurrentActivityName}
+              />
+            </div>
+          </div>
           <div className="form-group">
             <label htmlFor="inputCity" className="col-sm-2 control-label">City</label>
             <div className="col-sm-10">

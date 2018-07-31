@@ -83,8 +83,8 @@ class AllSavedTrips extends React.Component {
   }
 
   render () {
-    const savedTripsComponents = this.state.savedTrips.map((trip) => {
-      return (
+    const savedTripsComponents = this.state.savedTrips.map((trip, index) => {
+      return [
         <SingleSavedTrip
           key={trip.savedTripId}
           details={trip}
@@ -93,14 +93,15 @@ class AllSavedTrips extends React.Component {
           activities={this.state.activities}
           updateIsCompletedEvent={this.updateIsCompletedEvent}
           removeFromSavedTrips={this.removeFromSavedTrips}
-        />
-      );
+        />,
+        index % 3 === 2 && <div className='clearfix'></div>,
+      ];
     });
 
     return (
       <div>
         <h1>Saved Trips</h1>
-        <div>
+        <div className='row'>
           {savedTripsComponents}
         </div>
       </div>
