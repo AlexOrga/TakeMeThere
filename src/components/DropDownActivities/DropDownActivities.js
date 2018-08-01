@@ -1,11 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { DropdownButton, MenuItem } from 'react-bootstrap';
 
+import {activityShape} from '../../props/activityProp';
 import './DropDownActivities.css';
 
 const title = 'Select an Activity';
 
 class DropDown extends React.Component {
+  static propTypes = {
+    addActivity: PropTypes.func.isRequired,
+    activities: PropTypes.arrayOf(activityShape),
+  }
+
   state = {
     currentActivity: '',
   }

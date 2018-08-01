@@ -1,9 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-// import AllTrips from '../AllTrips/AllTrips';
-// import AllSavedTrips from '../AllSavedTrips/AllSavedTrips';
-
 import './Dashboard.css';
 
 class Dashboard extends React.Component {

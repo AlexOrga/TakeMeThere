@@ -1,11 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { DropdownButton, MenuItem } from 'react-bootstrap';
 
+import {countryShape} from '../../props/countryProp';
 import './DropDownCountries.css';
 
 const title = 'Select A Country';
 
 class DropDown extends React.Component {
+  static propTypes = {
+    addCountry: PropTypes.func.isRequired,
+    countries: PropTypes.arrayOf(countryShape),
+  }
+
   state = {
     currentCountry: '',
   }

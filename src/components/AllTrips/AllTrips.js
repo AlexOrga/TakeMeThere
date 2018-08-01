@@ -147,7 +147,7 @@ class AllTrips extends React.Component {
           saveTripEvent={this.saveTripEvent}
           removeTripEvent={this.removeTripEvent}
         />,
-        index % 3 === 2 && <div className='clearfix'></div>,
+        index % 3 === 2 && <div className='clearfix' key={index}></div>,
       ];
     });
     return (

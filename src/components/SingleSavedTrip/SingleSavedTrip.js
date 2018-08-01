@@ -1,8 +1,21 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
+import {savedTripShape} from '../../props/savedTripProp';
+import {cityShape} from '../../props/cityProp';
+import {countryShape} from '../../props/countryProp';
+import {activityShape} from '../../props/activityProp';
 import './SingleSavedTrip.css';
 
 class SingleSavedTrip extends React.Component {
+  static propTypes = {
+    details: savedTripShape,
+    cities: PropTypes.arrayOf(cityShape),
+    countries: PropTypes.arrayOf(countryShape),
+    activities: PropTypes.arrayOf(activityShape),
+    updateIsCompletedEvent: PropTypes.func.isRequired,
+    removeFromSavedTrips: PropTypes.func.isRequired,
+  }
 
   renderTrip (details, isCompleted) {
     const cities = this.props.cities;
