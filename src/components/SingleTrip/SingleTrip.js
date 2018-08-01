@@ -1,9 +1,22 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
+import {tripShape} from '../../props/tripProp';
+import {cityShape} from '../../props/cityProp';
+import {countryShape} from '../../props/countryProp';
+import {activityShape} from '../../props/activityProp';
 import authRequests from '../../firebaseRequests/auth';
 import './SingleTrip.css';
 
 class SingleTrip extends React.Component {
+  static propTypes = {
+    details: tripShape,
+    cities: PropTypes.arrayOf(cityShape),
+    countries: PropTypes.arrayOf(countryShape),
+    activities: PropTypes.arrayOf(activityShape),
+    saveTripEvent: PropTypes.func.isRequired,
+    removeTripEvent: PropTypes.func.isRequired,
+  }
 
   renderTrip (details) {
     const cities = this.props.cities;

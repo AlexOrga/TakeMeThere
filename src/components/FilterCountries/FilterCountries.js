@@ -1,11 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { DropdownButton, MenuItem } from 'react-bootstrap';
 
+import {countryShape} from '../../props/countryProp';
 import './FilterCountries.css';
 
 const title = 'Select A Country';
 
 class FilterCountries extends React.Component {
+  static propTypes = {
+    countries: PropTypes.arrayOf(countryShape),
+    setCountryToFilterBy: PropTypes.func.isRequired,
+    resetCountryFilter: PropTypes.func.isRequired,
+  }
+
   state = {
     currentCountry: '',
   }

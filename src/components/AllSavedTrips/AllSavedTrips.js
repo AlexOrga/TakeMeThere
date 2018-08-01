@@ -94,7 +94,7 @@ class AllSavedTrips extends React.Component {
           updateIsCompletedEvent={this.updateIsCompletedEvent}
           removeFromSavedTrips={this.removeFromSavedTrips}
         />,
-        index % 3 === 2 && <div className='clearfix'></div>,
+        index % 3 === 2 && <div className='clearfix' key={index}></div>,
       ];
     });
 

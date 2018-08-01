@@ -1,11 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { DropdownButton, MenuItem } from 'react-bootstrap';
 
+import {activityShape} from '../../props/activityProp';
 import './FilterActivities.css';
 
 const title = 'Select an Activity';
 
 class FilterActivities extends React.Component {
+  static propTypes = {
+    activities: PropTypes.arrayOf(activityShape),
+    setActivityToFilterBy: PropTypes.func.isRequired,
+    resetActivityFilter: PropTypes.func.isRequired,
+  }
+
   state = {
     currentActivity: '',
   }
