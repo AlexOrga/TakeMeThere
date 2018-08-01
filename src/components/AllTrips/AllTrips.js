@@ -53,17 +53,28 @@ class AllTrips extends React.Component {
 
   saveTripEvent = (e) => {
     e.preventDefault();
-    const saveTripObj = {
-      tripId: e.target.id,
-      isCompleted: false,
-      uid: authRequests.getUID(),
-    };
+    // const tripId = e.target.id;
     savedTripsRequests
-      .saveATrip(saveTripObj)
-      .then()
-      .catch((err) => {
-        console.error('error saving trip', err);
-      });
+      .getSavedTripsByUid(authRequests.getUID())
+      .then((savedTrips) => {
+        console.log('savedTrips: ', savedTrips);
+        debugger;
+        savedTrips.forEach((trip) => {
+          console.log('trip: ', trip);
+        });
+      })
+      .catch();
+    // const saveTripObj = {
+    //   tripId: e.target.id,
+    //   isCompleted: false,
+    //   uid: authRequests.getUID(),
+    // };
+    // savedTripsRequests
+    //   .saveATrip(saveTripObj)
+    //   .then()
+    //   .catch((err) => {
+    //     console.error('error saving trip', err);
+    //   });
   }
 
   removeTripEvent = (e) => {
