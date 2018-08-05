@@ -1,4 +1,5 @@
 import React from 'react';
+import { ToastContainer } from 'react-toastr';
 import authRequests from '../../firebaseRequests/auth';
 import savedTripsRequests from '../../firebaseRequests/savedtrips';
 import allTripsRequests from '../../firebaseRequests/alltrips';
@@ -57,7 +58,7 @@ class AllTrips extends React.Component {
       tripId: tripIdentity,
       isCompleted: false,
       uid: authRequests.getUID(),
-      };
+    };
     e.preventDefault();
     savedTripsRequests
       .getAllSavedTripsByUid(authRequests.getUID())
@@ -192,7 +193,7 @@ class AllTrips extends React.Component {
             resetActivityFilter={this.resetActivityFilter}
           />
         </div>
-        <div className='row'>
+        <div className='row container'>
           {allTripsComponents}
         </div>
       </div>
