@@ -52,18 +52,32 @@ class AllTrips extends React.Component {
   }
 
   saveTripEvent = (e) => {
+    const tripIdentity = e.target.id;
+    const saveTripObj = {
+      tripId: tripIdentity,
+      isCompleted: false,
+      uid: authRequests.getUID(),
+      };
     e.preventDefault();
-    // const tripId = e.target.id;
     savedTripsRequests
-      .getSavedTripsByUid(authRequests.getUID())
+      .getAllSavedTripsByUid(authRequests.getUID())
       .then((savedTrips) => {
-        console.log('savedTrips: ', savedTrips);
-        debugger;
-        savedTrips.forEach((trip) => {
-          console.log('trip: ', trip);
-        });
+        const result = savedTrips.find(x => x.tripId === tripIdentity);
+        result === undefined ?
+          (
+            savedTripsRequests
+              .saveATrip(saveTripObj)
+              .then()
+              .catch((err) => {
+                console.error('error saving trip', err);
+              })
+          ) : (
+            console.log('Already saved')
+          );
       })
-      .catch();
+      .catch((err) => {
+        console.error('Error retrieving savedTrips array', err);
+      });
     // const saveTripObj = {
     //   tripId: e.target.id,
     //   isCompleted: false,
