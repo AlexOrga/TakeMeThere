@@ -53,6 +53,7 @@ class AllTrips extends React.Component {
   }
 
   saveTripEvent = (e) => {
+    let container;
     const tripIdentity = e.target.id;
     const saveTripObj = {
       tripId: tripIdentity,
@@ -73,7 +74,7 @@ class AllTrips extends React.Component {
                 console.error('error saving trip', err);
               })
           ) : (
-            console.log('Already saved')
+            container.success(`hi! Now is`, `///title\\\\\\`)
           );
       })
       .catch((err) => {
@@ -177,7 +178,11 @@ class AllTrips extends React.Component {
       ];
     });
     return (
-      <div>
+      <div className='container'>
+        <ToastContainer
+          ref={ref => container = ref}
+          className="toast-top-right"
+        />
         <h1>All Trips</h1>
         <div className='col-md-6 text-center'>
           <FilterCountries
@@ -193,7 +198,7 @@ class AllTrips extends React.Component {
             resetActivityFilter={this.resetActivityFilter}
           />
         </div>
-        <div className='row container'>
+        <div className='row'>
           {allTripsComponents}
         </div>
       </div>
