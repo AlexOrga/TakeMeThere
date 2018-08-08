@@ -1,4 +1,5 @@
 import React from 'react';
+// import { ToastContainer } from 'react-toastr';
 import authRequests from '../../firebaseRequests/auth';
 import savedTripsRequests from '../../firebaseRequests/savedtrips';
 import allTripsRequests from '../../firebaseRequests/alltrips';
@@ -52,18 +53,43 @@ class AllTrips extends React.Component {
   }
 
   saveTripEvent = (e) => {
-    e.preventDefault();
+    const tripIdentity = e.target.id;
     const saveTripObj = {
-      tripId: e.target.id,
+      tripId: tripIdentity,
       isCompleted: false,
       uid: authRequests.getUID(),
     };
+    e.preventDefault();
     savedTripsRequests
-      .saveATrip(saveTripObj)
-      .then()
+      .getAllSavedTripsByUid(authRequests.getUID())
+      .then((savedTrips) => {
+        const result = savedTrips.find(x => x.tripId === tripIdentity);
+        result === undefined ?
+          (
+            savedTripsRequests
+              .saveATrip(saveTripObj)
+              .then()
+              .catch((err) => {
+                console.error('error saving trip', err);
+              })
+          ) : (
+            console.error('Already Saved!')
+          );
+      })
       .catch((err) => {
-        console.error('error saving trip', err);
+        console.error('Error retrieving savedTrips array', err);
       });
+    // const saveTripObj = {
+    //   tripId: e.target.id,
+    //   isCompleted: false,
+    //   uid: authRequests.getUID(),
+    // };
+    // savedTripsRequests
+    //   .saveATrip(saveTripObj)
+    //   .then()
+    //   .catch((err) => {
+    //     console.error('error saving trip', err);
+    //   });
   }
 
   removeTripEvent = (e) => {
@@ -151,7 +177,11 @@ class AllTrips extends React.Component {
       ];
     });
     return (
-      <div>
+      <div className='container'>
+        {/* <ToastContainer
+          ref={ref => container = ref}
+          className="toast-top-right"
+        /> */}
         <h1>All Trips</h1>
         <div className='col-md-6 text-center'>
           <FilterCountries
