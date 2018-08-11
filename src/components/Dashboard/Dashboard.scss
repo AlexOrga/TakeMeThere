@@ -6,3 +6,15 @@
   margin-top: 10px;
   width: 100%;
 }
+
+.dashboard-element {
+  border: 2px solid rgba(211, 211, 211, .4);
+  border-radius: 100%;
+  width: 275px;
+  height: 275px;
+  background-color: rgba(211, 211, 211, .4)
+}
+
+.dashboard-element h2 {
+  margin-top: 45%;
+}
