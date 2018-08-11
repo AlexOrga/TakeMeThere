@@ -36,6 +36,9 @@ class Navbar extends React.Component {
               {
                 authed ? (
                   <ul className="nav navbar-nav navbar-right">
+                    <li>
+                      <img src="./img/TMTLogo.png" alt="TMT Logo"/>
+                    </li>
                     <li><Link to="/alltrips">
                       All Trips</Link>
                     </li>

@@ -6,7 +6,7 @@ import './Dashboard.css';
 class Dashboard extends React.Component {
   render () {
     return (
-      <div>
+      <div className='container'>
         <div>
           <h2><Link to='./alltrips'>All Trips</Link></h2>
         </div>

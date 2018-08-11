@@ -80,7 +80,7 @@ class App extends Component {
               authed={this.state.authed}
               runAway={this.runAway}
             />
-            <div className="">
+            <div>
               <div className="row">
                 <Switch>
                   <Route path="/" exact component={HomePage}/>
