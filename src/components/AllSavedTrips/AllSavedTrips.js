@@ -99,7 +99,7 @@ class AllSavedTrips extends React.Component {
     });
 
     return (
-      <div>
+      <div className='container'>
         <h1>Saved Trips</h1>
         <div className='row'>
           {savedTripsComponents}

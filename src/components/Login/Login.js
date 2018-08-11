@@ -40,15 +40,16 @@ class Login extends React.Component {
   render () {
     const { user } = this.state;
     return (
-      <div className="Login">
+      <div className="login">
+        <img className='login-img' src="https://images.unsplash.com/photo-1508672019048-805c876b67e2?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bd27a515bce2dade58bc288fde28f290&auto=format&fit=crop&w=2593&q=80" alt="Man sitting on a dock"/>
         <div id="login-form">
-          <h1 className="text-center">Login</h1>
+          <h1 className="login-header text-center">Login</h1>
           <form className="form-horizontal col-sm-6 col-sm-offset-3">
             <div className="form-group">
               <label htmlFor="inputEmail" className="col-sm-4 control-label">
                 Email:
               </label>
-              <div className="col-sm-8">
+              <div className="col-sm-5">
                 <input
                   type="email"
                   className="form-control"
@@ -63,7 +64,7 @@ class Login extends React.Component {
               <label htmlFor="inputPassword" className="col-sm-4 control-label">
                 Password:
               </label>
-              <div className="col-sm-8">
+              <div className="col-sm-5">
                 <input
                   type="password"
                   className="form-control"
@@ -76,11 +77,11 @@ class Login extends React.Component {
             </div>
             <div className="form-group">
               <div className="col-sm-12 text-center">
-                <Link to="/register">Need to Register?</Link>
+                <Link className='register-link' to="/register">Need to Register?</Link>
               </div>
             </div>
             <div className="form-group">
-              <div className="col-sm-12">
+              <div className="col-sm-6 col-sm-offset-3">
                 <button
                   type="submit"
                   className="btn btn-default col-xs-12"
