@@ -8,13 +8,29 @@
 }
 
 .dashboard-element {
-  border: 2px solid rgba(211, 211, 211, .4);
+  border: 2px solid rgba(211, 211, 211, 0.6);
   border-radius: 100%;
   width: 275px;
   height: 275px;
-  background-color: rgba(211, 211, 211, .4)
+  background-color: rgba(252, 252, 252, 0.6);
 }
 
 .dashboard-element h2 {
   margin-top: 45%;
+}
+
+.single-element-container a {
+  color: rgb(48, 47, 47);
+  text-decoration-color: rgb(48, 47, 47);
+}
+
+.dashboard-element:hover {
+  color: white;
+  text-decoration-color: white;
+  background-color: rgba(90, 89, 89, 0.8);
+}
+
+.main-element-container {
+  margin-top: 550px;
+  padding-left: 75px;
 }
