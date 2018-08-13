@@ -103,23 +103,34 @@ class NewTrip extends React.Component {
 
   saveTripEvent = (e) => {
     e.preventDefault();
-    const cities = this.state.cities;
-    const currentCountryId = this.state.newTrip.countryId;
-    const currentCity = this.state.currentCity.toLowerCase();
-    const cityId = cities.find(x => x.name === currentCity && x.countryId === currentCountryId);
-    if (cityId !== undefined) {
-      this.addCityId(cityId.id);
+    if (
+      this.state.newTrip.activityName !== '' &&
+      this.state.currentCity !== '' &&
+      this.state.newTrip.description !== '' &&
+      this.state.newTrip.linkUrl !== '' &&
+      this.state.newTrip.countryId !== '' &&
+      this.state.newTrip.activityId !== ''
+    ) {
+      const cities = this.state.cities;
+      const currentCountryId = this.state.newTrip.countryId;
+      const currentCity = this.state.currentCity.toLowerCase();
+      const cityId = cities.find(x => x.name === currentCity && x.countryId === currentCountryId);
+      if (cityId !== undefined) {
+        this.addCityId(cityId.id);
+      } else {
+        const newCityObj = {
+          name: currentCity,
+          countryId: currentCountryId,
+        };
+        citiesRequests
+          .postNewCity(newCityObj)
+          .then((fbKey) => {
+            this.addCityId(fbKey);
+          })
+          .catch();
+      }
     } else {
-      const newCityObj = {
-        name: currentCity,
-        countryId: currentCountryId,
-      };
-      citiesRequests
-        .postNewCity(newCityObj)
-        .then((fbKey) => {
-          this.addCityId(fbKey);
-        })
-        .catch();
+      alert('Please fill in all fields');
     }
   }
 
