@@ -32,7 +32,7 @@ class SingleSavedTrip extends React.Component {
     if (isCompleted) {
       return (
         <div className="col-sm-6 col-md-4">
-          <div className="thumbnail isCompleted">
+          <div className="thumbnail isCompleted box shadow">
             <div className="caption">
               <h2>{details.activityName}</h2>
               <h4>{cityName}</h4>
@@ -65,7 +65,7 @@ class SingleSavedTrip extends React.Component {
     } else {
       return (
         <div className="col-sm-6 col-md-4">
-          <div className = "thumbnail">
+          <div className = "thumbnail box shadow">
             <div className="caption">
               <h2>{details.activityName}</h2>
               <h4>{cityName}</h4>

@@ -37,7 +37,7 @@ class SingleTrip extends React.Component {
       return (
 
         <div className="col-sm-6 col-md-4">
-          <div className="thumbnail">
+          <div className="thumbnail box shadow">
             <div className="caption">
               <h2>{details.activityName}</h2>
               <h4>{cityName}</h4>
@@ -58,7 +58,7 @@ class SingleTrip extends React.Component {
 
       return (
         <div className="col-sm-6 col-md-4">
-          <div className="thumbnail">
+          <div className="thumbnail box shadow">
             <div className="caption">
               <h2>{details.activityName}</h2>
               <h4>{cityName}</h4>
