@@ -1,5 +1,5 @@
 import React from 'react';
-// import { ToastContainer } from 'react-toastr';
+import { toastr } from 'react-toastr';
 import authRequests from '../../firebaseRequests/auth';
 import savedTripsRequests from '../../firebaseRequests/savedtrips';
 import allTripsRequests from '../../firebaseRequests/alltrips';
@@ -73,7 +73,7 @@ class AllTrips extends React.Component {
                 console.error('error saving trip', err);
               })
           ) : (
-            console.error('Already Saved!')
+            console.error('already saved')
           );
       })
       .catch((err) => {
@@ -184,19 +184,21 @@ class AllTrips extends React.Component {
             className="toast-top-right"
           /> */}
           <h1>All Trips</h1>
-          <div className='col-md-6 text-center'>
-            <FilterCountries
-              setCountryToFilterBy={this.setCountryToFilterBy}
-              countries={this.state.countries}
-              resetCountryFilter={this.resetCountryFilter}
-            />
-          </div>
-          <div className='col-md-6 text-center'>
-            <FilterActivities
-              setActivityToFilterBy={this.setActivityToFilterBy}
-              activities={this.state.activities}
-              resetActivityFilter={this.resetActivityFilter}
-            />
+          <div className='col-md-12 filters-container'>
+            <div className='col-md-6 text-center'>
+              <FilterCountries
+                setCountryToFilterBy={this.setCountryToFilterBy}
+                countries={this.state.countries}
+                resetCountryFilter={this.resetCountryFilter}
+              />
+            </div>
+            <div className='col-md-6 text-center'>
+              <FilterActivities
+                setActivityToFilterBy={this.setActivityToFilterBy}
+                activities={this.state.activities}
+                resetActivityFilter={this.resetActivityFilter}
+              />
+            </div>
           </div>
           <div className='row'>
             {allTripsComponents}

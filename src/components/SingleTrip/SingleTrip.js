@@ -48,8 +48,8 @@ class SingleTrip extends React.Component {
                 <a href={details.linkUrl}>Click Here To See More About This Location</a>
               </div>
               <div className='card-button-group'>
-                <a href="" id={this.props.details.id} className="btn btn-success" role="button" onClick={this.props.saveTripEvent}>Save Trip</a>
-                <a href="" id={this.props.details.id} className="btn btn-danger" role="button" onClick={this.props.removeTripEvent}>Remove Trip</a>
+                <a href="" id={this.props.details.id} className="btn btn-success" role="button" onClick={this.props.saveTripEvent} data-micron='tada'>Save Trip</a>
+                <a href="" id={this.props.details.id} className="btn btn-danger" role="button" onClick={this.props.removeTripEvent} data-micron='pop'>Remove Trip</a>
               </div>
             </div>
           </div>
@@ -71,7 +71,7 @@ class SingleTrip extends React.Component {
                 <a href={details.linkUrl}>Click Here To See More About This Location</a>
               </div>
               <div className='card-button-group'>
-                <a href="" id={this.props.details.id} className="btn btn-success" role="button" onClick={this.props.saveTripEvent}>Save Trip</a>
+                <a href="" id={this.props.details.id} className="btn btn-success" role="button" onClick={this.props.saveTripEvent} data-micron='tada'>Save Trip</a>
               </div>
             </div>
           </div>

@@ -13,7 +13,8 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
     "react-toastr": "^3.0.0",
-    "toastr": "^2.1.4"
+    "toastr": "^2.1.4",
+    "webkul-micron": "^1.1.6"
   },
   "scripts": {
     "build-css": "node-sass-chokidar --include-path ./src --include-path ./node_modules src/ -o src/",

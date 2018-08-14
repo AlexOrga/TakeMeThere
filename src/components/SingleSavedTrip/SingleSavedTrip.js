@@ -51,6 +51,7 @@ class SingleSavedTrip extends React.Component {
                   className="btn btn-success"
                   role="button"
                   onClick={this.props.updateIsCompletedEvent}
+                  data-micron='squeeze'
                 >Un-Do This Trip!</a>
                 <a
                   href=""
@@ -58,6 +59,7 @@ class SingleSavedTrip extends React.Component {
                   className="btn btn-danger"
                   role="button"
                   onClick={this.props.removeFromSavedTrips}
+                  data-micron='pop'
                 >Remove Trip</a>
               </div>
             </div>
@@ -85,6 +87,7 @@ class SingleSavedTrip extends React.Component {
                   className="btn btn-success"
                   role="button"
                   onClick={this.props.updateIsCompletedEvent}
+                  data-micron='squeeze'
                 >I Did This Trip!</a>
                 <a
                   href=""
@@ -92,6 +95,7 @@ class SingleSavedTrip extends React.Component {
                   className="btn btn-danger"
                   role="button"
                   onClick={this.props.removeFromSavedTrips}
+                  data-micron='pop'
                 >Remove Trip</a>
               </div>
             </div>
