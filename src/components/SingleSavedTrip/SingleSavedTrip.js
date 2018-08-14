@@ -31,16 +31,18 @@ class SingleSavedTrip extends React.Component {
 
     if (isCompleted) {
       return (
-        <div className="col-sm-6 col-md-4">
+        <div className="card col-sm-6 col-md-4">
           <div className="thumbnail isCompleted box shadow">
             <div className="caption">
-              <h2>{details.activityName}</h2>
-              <h4>{cityName}</h4>
-              <h4>{currentCountry.name}</h4>
-              <p>{currentActivity.name}</p>
+              <h2 className='card-activity'>{details.activityName}</h2>
+              <h3>City: {cityName}</h3>
+              <h4>Country: {currentCountry.name}</h4>
               <p>{details.description}</p>
-              <p>
+              <h5>Activity Type: {currentActivity.name}</h5>
+              <div className='card-link'>
                 <a href={details.linkUrl}>Click Here To See More About This Location</a>
+              </div>
+              <div className='card-button-group'>
                 <a
                   href=""
                   data-trip-id={this.props.details.id}
@@ -57,23 +59,25 @@ class SingleSavedTrip extends React.Component {
                   role="button"
                   onClick={this.props.removeFromSavedTrips}
                 >Remove Trip</a>
-              </p>
+              </div>
             </div>
           </div>
         </div>
       );
     } else {
       return (
-        <div className="col-sm-6 col-md-4">
+        <div className="card col-sm-6 col-md-4">
           <div className = "thumbnail box shadow">
             <div className="caption">
-              <h2>{details.activityName}</h2>
-              <h4>{cityName}</h4>
-              <h4>{currentCountry.name}</h4>
-              <p>{currentActivity.name}</p>
+              <h2 className='card-activity'>{details.activityName}</h2>
+              <h3>City: {cityName}</h3>
+              <h4>Country: {currentCountry.name}</h4>
               <p>{details.description}</p>
-              <p>
+              <h5>Activity Type: {currentActivity.name}</h5>
+              <div className='card-link'>
                 <a href={details.linkUrl}>Click Here To See More About This Location</a>
+              </div>
+              <div className='card-button-group'>
                 <a
                   href=""
                   data-trip-id={this.props.details.id}
@@ -89,7 +93,7 @@ class SingleSavedTrip extends React.Component {
                   role="button"
                   onClick={this.props.removeFromSavedTrips}
                 >Remove Trip</a>
-              </p>
+              </div>
             </div>
           </div>
         </div>

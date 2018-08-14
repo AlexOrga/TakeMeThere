@@ -1,0 +1,27 @@
+.card-description {
+  text-align: justify;
+}
+
+.card-activity {
+  border-bottom: 1px solid black;
+  text-align: center;
+}
+
+.card-link {
+  margin-bottom: 10px;
+}
+
+.card-button-group {
+  text-align: center;
+}
+
+.card-button-group a {
+  margin-left: 2px;
+  margin-right: 2px;
+  box-shadow: 0 2px 5px grey;
+}
+
+.card {
+  position: relative;
+  z-index: 2;
+}

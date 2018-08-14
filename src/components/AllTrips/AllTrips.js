@@ -177,28 +177,30 @@ class AllTrips extends React.Component {
       ];
     });
     return (
-      <div className='container'>
-        {/* <ToastContainer
-          ref={ref => container = ref}
-          className="toast-top-right"
-        /> */}
-        <h1>All Trips</h1>
-        <div className='col-md-6 text-center'>
-          <FilterCountries
-            setCountryToFilterBy={this.setCountryToFilterBy}
-            countries={this.state.countries}
-            resetCountryFilter={this.resetCountryFilter}
-          />
-        </div>
-        <div className='col-md-6 text-center'>
-          <FilterActivities
-            setActivityToFilterBy={this.setActivityToFilterBy}
-            activities={this.state.activities}
-            resetActivityFilter={this.resetActivityFilter}
-          />
-        </div>
-        <div className='row'>
-          {allTripsComponents}
+      <div className='all-trip-container'>
+        <div className='container'>
+          {/* <ToastContainer
+            ref={ref => container = ref}
+            className="toast-top-right"
+          /> */}
+          <h1>All Trips</h1>
+          <div className='col-md-6 text-center'>
+            <FilterCountries
+              setCountryToFilterBy={this.setCountryToFilterBy}
+              countries={this.state.countries}
+              resetCountryFilter={this.resetCountryFilter}
+            />
+          </div>
+          <div className='col-md-6 text-center'>
+            <FilterActivities
+              setActivityToFilterBy={this.setActivityToFilterBy}
+              activities={this.state.activities}
+              resetActivityFilter={this.resetActivityFilter}
+            />
+          </div>
+          <div className='row'>
+            {allTripsComponents}
+          </div>
         </div>
       </div>
     );

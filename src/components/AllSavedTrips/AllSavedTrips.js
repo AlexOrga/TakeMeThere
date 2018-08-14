@@ -99,10 +99,12 @@ class AllSavedTrips extends React.Component {
     });
 
     return (
-      <div className='container'>
-        <h1>Saved Trips</h1>
-        <div className='row'>
-          {savedTripsComponents}
+      <div className='all-saved-trip-container'>
+        <div className='container'>
+          <h1>Saved Trips</h1>
+          <div className='row'>
+            {savedTripsComponents}
+          </div>
         </div>
       </div>
     );
