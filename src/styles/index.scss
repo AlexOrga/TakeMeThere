@@ -7,7 +7,7 @@ body {
 
 .box {
   background-color:white;
-  border-radius:5px;
+  border-radius:10px;
 }
 
 .shadow {
@@ -20,11 +20,11 @@ body {
   content:"";
   bottom:12px;left:15px;top:80%;
   width:45%;
-  background:#9B7468;
-  z-index:-1;
-  -webkit-box-shadow: 0 20px 15px #9B7468;
-  -moz-box-shadow: 0 20px 15px #9B7468;
-  box-shadow: 0 20px 15px #9B7468;
+  background:rgb(59, 45, 40);
+  z-index: -1;
+  -webkit-box-shadow: 0 20px 15px rgb(59, 45, 40);
+  -moz-box-shadow: 0 20px 15px rgb(59, 45, 40);
+  box-shadow: 0 20px 15px rgb(59, 45, 40);
   -webkit-transform: rotate(-6deg);
   -moz-transform: rotate(-6deg);
   transform: rotate(-6deg);

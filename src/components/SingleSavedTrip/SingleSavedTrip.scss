@@ -1,5 +1,45 @@
-
 .isCompleted {
-  color: white;
-  background-color: green;
+  background-color: rgb(53, 197, 40);
+
+  h2, h3, h4, h5, p {
+    color: white;
+  }
+
+  .card-activity {
+    border-color: white;
+  }
+
+  .card-button-group a {
+    box-shadow: 0 2px 5px white;
+  }
+}
+
+.card-description {
+  text-align: justify;
+  margin-top: 5px;
+}
+
+.card-activity {
+  border-bottom: 3px solid black;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.card-link {
+  margin-bottom: 10px;
+}
+
+.card-button-group {
+  text-align: center;
+
+  a {
+    margin-left: 2px;
+    margin-right: 2px;
+    box-shadow: 0 2px 5px grey;
+  }
+}
+
+.card {
+  position: relative;
+  z-index: 2;
 }

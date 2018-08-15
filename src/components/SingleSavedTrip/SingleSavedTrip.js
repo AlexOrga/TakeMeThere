@@ -31,16 +31,18 @@ class SingleSavedTrip extends React.Component {
 
     if (isCompleted) {
       return (
-        <div className="col-sm-6 col-md-4">
+        <div className="card col-sm-6 col-md-4">
           <div className="thumbnail isCompleted box shadow">
             <div className="caption">
-              <h2>{details.activityName}</h2>
-              <h4>{cityName}</h4>
-              <h4>{currentCountry.name}</h4>
-              <p>{currentActivity.name}</p>
-              <p>{details.description}</p>
-              <p>
+              <h2 className='card-activity'>{details.activityName}</h2>
+              <h3 className='card-city'>City: {cityName}</h3>
+              <h4 className='card-country'>Country: {currentCountry.name}</h4>
+              <p className='card-description'>{details.description}</p>
+              <h5>Activity Type: {currentActivity.name}</h5>
+              <div className='card-link'>
                 <a href={details.linkUrl}>Click Here To See More About This Location</a>
+              </div>
+              <div className='card-button-group'>
                 <a
                   href=""
                   data-trip-id={this.props.details.id}
@@ -49,6 +51,7 @@ class SingleSavedTrip extends React.Component {
                   className="btn btn-success"
                   role="button"
                   onClick={this.props.updateIsCompletedEvent}
+                  data-micron='squeeze'
                 >Un-Do This Trip!</a>
                 <a
                   href=""
@@ -56,24 +59,27 @@ class SingleSavedTrip extends React.Component {
                   className="btn btn-danger"
                   role="button"
                   onClick={this.props.removeFromSavedTrips}
+                  data-micron='pop'
                 >Remove Trip</a>
-              </p>
+              </div>
             </div>
           </div>
         </div>
       );
     } else {
       return (
-        <div className="col-sm-6 col-md-4">
+        <div className="card col-sm-6 col-md-4">
           <div className = "thumbnail box shadow">
             <div className="caption">
-              <h2>{details.activityName}</h2>
-              <h4>{cityName}</h4>
-              <h4>{currentCountry.name}</h4>
-              <p>{currentActivity.name}</p>
-              <p>{details.description}</p>
-              <p>
+              <h2 className='card-activity'>{details.activityName}</h2>
+              <h3 className='card-city'>City: {cityName}</h3>
+              <h4 className='card-country'>Country: {currentCountry.name}</h4>
+              <p className='card-description'>{details.description}</p>
+              <h5>Activity Type: {currentActivity.name}</h5>
+              <div className='card-link'>
                 <a href={details.linkUrl}>Click Here To See More About This Location</a>
+              </div>
+              <div className='card-button-group'>
                 <a
                   href=""
                   data-trip-id={this.props.details.id}
@@ -81,6 +87,7 @@ class SingleSavedTrip extends React.Component {
                   className="btn btn-success"
                   role="button"
                   onClick={this.props.updateIsCompletedEvent}
+                  data-micron='squeeze'
                 >I Did This Trip!</a>
                 <a
                   href=""
@@ -88,8 +95,9 @@ class SingleSavedTrip extends React.Component {
                   className="btn btn-danger"
                   role="button"
                   onClick={this.props.removeFromSavedTrips}
+                  data-micron='pop'
                 >Remove Trip</a>
-              </p>
+              </div>
             </div>
           </div>
         </div>

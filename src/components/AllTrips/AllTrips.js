@@ -1,5 +1,4 @@
 import React from 'react';
-// import { ToastContainer } from 'react-toastr';
 import authRequests from '../../firebaseRequests/auth';
 import savedTripsRequests from '../../firebaseRequests/savedtrips';
 import allTripsRequests from '../../firebaseRequests/alltrips';
@@ -73,23 +72,12 @@ class AllTrips extends React.Component {
                 console.error('error saving trip', err);
               })
           ) : (
-            console.error('Already Saved!')
+            alert('Trip is already saved!')
           );
       })
       .catch((err) => {
         console.error('Error retrieving savedTrips array', err);
       });
-    // const saveTripObj = {
-    //   tripId: e.target.id,
-    //   isCompleted: false,
-    //   uid: authRequests.getUID(),
-    // };
-    // savedTripsRequests
-    //   .saveATrip(saveTripObj)
-    //   .then()
-    //   .catch((err) => {
-    //     console.error('error saving trip', err);
-    //   });
   }
 
   removeTripEvent = (e) => {
@@ -177,28 +165,28 @@ class AllTrips extends React.Component {
       ];
     });
     return (
-      <div className='container'>
-        {/* <ToastContainer
-          ref={ref => container = ref}
-          className="toast-top-right"
-        /> */}
-        <h1>All Trips</h1>
-        <div className='col-md-6 text-center'>
-          <FilterCountries
-            setCountryToFilterBy={this.setCountryToFilterBy}
-            countries={this.state.countries}
-            resetCountryFilter={this.resetCountryFilter}
-          />
-        </div>
-        <div className='col-md-6 text-center'>
-          <FilterActivities
-            setActivityToFilterBy={this.setActivityToFilterBy}
-            activities={this.state.activities}
-            resetActivityFilter={this.resetActivityFilter}
-          />
-        </div>
-        <div className='row'>
-          {allTripsComponents}
+      <div className='all-trip-container'>
+        <div className='container'>
+          <img className='col-md-4 col-md-offset-4' src='http://r69.cooltext.com/rendered/cooltext295666679152093.png' alt='logo'/>
+          <div className='col-md-12 filters-container'>
+            <div className='col-md-6 text-center'>
+              <FilterCountries
+                setCountryToFilterBy={this.setCountryToFilterBy}
+                countries={this.state.countries}
+                resetCountryFilter={this.resetCountryFilter}
+              />
+            </div>
+            <div className='col-md-6 text-center'>
+              <FilterActivities
+                setActivityToFilterBy={this.setActivityToFilterBy}
+                activities={this.state.activities}
+                resetActivityFilter={this.resetActivityFilter}
+              />
+            </div>
+          </div>
+          <div className='row'>
+            {allTripsComponents}
+          </div>
         </div>
       </div>
     );
