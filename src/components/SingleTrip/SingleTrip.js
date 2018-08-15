@@ -40,8 +40,8 @@ class SingleTrip extends React.Component {
           <div className="thumbnail box shadow">
             <div className="caption">
               <h2 className='card-activity'>{details.activityName}</h2>
-              <h3>City: {cityName}</h3>
-              <h4>Country: {currentCountry.name}</h4>
+              <h3 className='card-city'>City: {cityName}</h3>
+              <h4 className='card-country'>Country: {currentCountry.name}</h4>
               <p className='card-description'>{details.description}</p>
               <h5>Activity Type: {currentActivity.name}</h5>
               <div className='card-link'>
@@ -63,9 +63,9 @@ class SingleTrip extends React.Component {
           <div className="thumbnail box shadow">
             <div className="caption">
               <h2 className='card-activity'>{details.activityName}</h2>
-              <h3>City: {cityName}</h3>
-              <h4>Country: {currentCountry.name}</h4>
-              <p>{details.description}</p>
+              <h3 className='card-city'>City: {cityName}</h3>
+              <h4 className='card-country'>Country: {currentCountry.name}</h4>
+              <p className='card-description'>{details.description}</p>
               <h5>Activity Type: {currentActivity.name}</h5>
               <div className='card-link'>
                 <a href={details.linkUrl}>Click Here To See More About This Location</a>

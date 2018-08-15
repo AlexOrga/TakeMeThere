@@ -183,7 +183,8 @@ class AllTrips extends React.Component {
             ref={ref => container = ref}
             className="toast-top-right"
           /> */}
-          <h1>All Trips</h1>
+          {/* <h1>All Trips</h1> */}
+          <img className='col-md-4 col-md-offset-4' src='http://r69.cooltext.com/rendered/cooltext295666679152093.png' alt='logo'/>
           <div className='col-md-12 filters-container'>
             <div className='col-md-6 text-center'>
               <FilterCountries
