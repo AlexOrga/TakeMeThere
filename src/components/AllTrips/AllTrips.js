@@ -167,7 +167,7 @@ class AllTrips extends React.Component {
     return (
       <div className='all-trip-container'>
         <div className='container'>
-          <img className='col-md-4 col-md-offset-4' src='http://r69.cooltext.com/rendered/cooltext295666679152093.png' alt='logo'/>
+          <h1>All Trips</h1>
           <div className='col-md-12 filters-container'>
             <div className='col-md-6 text-center'>
               <FilterCountries
