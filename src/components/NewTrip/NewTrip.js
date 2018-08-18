@@ -137,7 +137,7 @@ class NewTrip extends React.Component {
   render () {
     const newTrip = this.state.newTrip;
     return (
-      <div>
+      <div className='container'>
         <h1 className="header">NewTrip</h1>
         <form className="form-horizontal">
           <div className="form-group">
